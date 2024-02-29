@@ -1,0 +1,9 @@
+.btn-fixed {
+    background-color: #4CAF50; /* Warna tetap untuk tombol */
+    color: white; /* Warna teks untuk tombol */
+}
+
+.btn-fixed:hover {
+    background-color: white; /* Ketika tombol dihover, ubah warna latar menjadi putih */
+    color: black; /* Ketika tombol dihover, ubah warna teks menjadi hitam */
+}

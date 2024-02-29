@@ -1,0 +1,4 @@
+.accordion-button::after{
+    content: "";
+    background-image: url(../../public/images/arrow.svg) !important;
+}
