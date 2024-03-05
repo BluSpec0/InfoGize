@@ -28,7 +28,7 @@
             style="box-shadow: 0px 0px 15px #00000047; padding-left: 5rem; padding-right: 5rem; padding-top: 10px; padding-bottom: 10px; z-index: 50;width: 100%;">
             <div class="container d-flex justify-content-between">
                 <a class="navbar-brand d-flex align-items-center" href="#"><img
-                        src="{{ url('/images/nav-logo.png') }}" alt="logo" width="25"></a>
+                        src="{{ url('/images/nav-logo.png') }}" alt="logo" width="100"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation"
@@ -37,54 +37,57 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-0 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"
-                                href="{{ Auth::check() ? route('home') : '/' }}" style="color: #5F5B00">Beranda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="/products/1" style="color: #5F5B00;">Informasi</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link " href="/products/2" style="color: #5F5B00">Produk</a>
-                        </li>
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#FAQ"
-                                        style="color: #5F5B00">FAQ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#hubungikami"
-                                        style="color: #5F5B00">Hubungi
-                                        Kami</a>
-                                </li>
-                            @endif
-                        @else
+                    <div class="ms-auto">
+                        <ul class="navbar-nav me-auto mb-0 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="#" style="color: #5F5B00">Lacak
-                                    Paket</a>
+                                <a class="nav-link active" aria-current="page"
+                                    href="{{ Auth::check() ? route('home') : '/' }}" style="color: #5F5B00">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="#" style="color: #5F5B00">Riwayat</a>
+                                <a class="nav-link " href="/products/1" style="color: #5F5B00;">Informasi</a>
                             </li>
-                        @endguest
-                    </ul>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/products/2" style="color: #5F5B00">Produk</a>
+                            </li>
+                            @guest
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="#FAQ"
+                                            style="color: #5F5B00">FAQ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="#hubungikami"
+                                            style="color: #5F5B00">Hubungi
+                                            Kami</a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link " aria-current="page" href="#" style="color: #5F5B00">Lacak
+                                        Paket</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " aria-current="page" href="#"
+                                        style="color: #5F5B00">Riwayat</a>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
                     <div class="navbar-nav ms-auto" style="flex-direction: row; gap: 8px;">
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="btn btn-primary btn-sm"
-                                        style="background-color: #5F5B00; color: #FFFFFF; font-size: 13px; border-radius: 5px; border-color: #5F5B00"
-                                        href="{{ route('login') }}">{{ __('Masuk') }}</a>
+                                    <a class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#login"
+                                        style="background-color: #5F5B00; color: #FFFFFF; font-size: 13px; border-radius: 5px; border-color: #5F5B00">{{ __('Masuk') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="btn btn-outline-primary btn-sm"
+                                    <a class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="modal"
                                         style="background-color: #FFFFFF; color: #5F5B00; font-size: 13px; border-radius: 5px; border-color: #5F5B00"
-                                        href="{{ route('register') }}">{{ __('Daftar') }}</a>
+                                        data-bs-target="#register">{{ __('Daftar') }}</a>
                                 </li>
                             @endif
                         @else
@@ -183,5 +186,290 @@
 
     </div>
 </body>
+
+<section>
+    <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div style="padding: 3rem">
+                    <div class="">
+                        <div class="" style="">
+                            <a class="" style="color: #5F5B00;" data-bs-dismiss="modal"><img
+                                    src="{{ url('/images/backarrow.svg') }}" alt="" width="30"></a>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-1"
+                        style="color: #5F5B00; font-size: 30px; font-weight: 400;">
+                        {{ __('Selamat Datang Kembali!') }}</div>
+                    <div class="row justify-content-center mb-3">
+                        <div
+                            style="color: #5F5B00; font-size: 15px; font-weight: 400; opacity: 0.5; max-width: 50%; text-align: center">
+                            {{ __('Silahkan Masukan Informasi Akun Anda Untuk Melanjutkan.') }}
+                        </div>
+                    </div>
+
+
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+
+                            <div class="row mb-3 justify-content-center">
+
+                                <div class="col-md-6">
+                                    <input id="email" type="email" style="box-shadow: 0px 0px 2px #5F5B00;"
+                                        placeholder="Masukan E-mail"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                    <style>
+                                        #email::placeholder {
+                                            color: #5F5B00;
+                                            text-align: center;
+                                            opacity: 0.3;
+                                        }
+
+                                        #email::first-line {
+                                            color: #5F5B00;
+                                        }
+                                    </style>
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center">
+
+                                <div class="col-md-6">
+                                    <input id="password" type="password" placeholder="Masukan Sandi"
+                                        style="box-shadow: 0px 0px 2px #5F5B00; color: #5F5B00"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="current-password">
+
+                                    <style>
+                                        #password::placeholder {
+                                            color: #5F5B00;
+                                            text-align: center;
+                                            opacity: 0.3;
+                                        }
+
+                                        #password::first-line {
+                                            color: #5F5B00;
+                                        }
+                                    </style>
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-5 justify-content-center">
+                                <div class="col-md-6 d-flex justify-content-end">
+                                    @if (Route::has('password.request'))
+                                        <a class="btn row" href="{{ route('password.request') }}"
+                                            style="color: #5F5B00; font-size: 13px;">
+                                            {{ __('Forget Password?') }}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center mb-2">
+                                <div class="col-md-6 row justify-content-center" style="width: 30%">
+                                    <button type="submit" class="btn btn-primar"
+                                        style="background-color: #5F5B00; color: #FFFFFF; font-size: 15px; border-radius: 12px">
+                                        {{ __('Masuk') }}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="row justify-content-center"
+                                    style="width: 100%; flex-direction: row; text-align: center; font-size: 13px;">
+                                    <p>Belum punya akun?
+                                        <a class="" style="color: #5F5B00; font-size: 13px; font-weight: 600"
+                                            type="button" data-bs-toggle="modal"
+                                            data-bs-target="#register">{{ __('Daftar.') }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="modal fade" id="register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div style="padding: 3rem">
+                    <div class="">
+                        <div class="" style="">
+                            <a class="" style="color: #5F5B00;" data-bs-dismiss="modal"><img
+                                    src="{{ url('/images/backarrow.svg') }}" alt="" width="30"></a>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-1"
+                        style="color: #5F5B00; font-size: 30px; font-weight: 400;">
+                        {{ __('Selamat Datang Kembali!') }}</div>
+                    <div class="row justify-content-center mb-3">
+                        <div
+                            style="color: #5F5B00; font-size: 15px; font-weight: 400; opacity: 0.5; max-width: 50%; text-align: center">
+                            {{ __('Silahkan Masukan Informasi Akun Anda Untuk Melanjutkan.') }}
+                        </div>
+                    </div>
+
+
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+
+                            <div class="row mb-3 justify-content-center">
+
+                                <div class="col-md-6">
+                                    <input id="name" type="text" style="box-shadow: 0px 0px 2px #5F5B00;"
+                                        placeholder="Masukan Nama"
+                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                    <style>
+                                        #name::placeholder {
+                                            color: #5F5B00;
+                                            text-align: center;
+                                            opacity: 0.3;
+                                        }
+
+                                        #name::first-line {
+                                            color: #5F5B00;
+                                        }
+                                    </style>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 justify-content-center">
+
+                                <div class="col-md-6">
+                                    <input id="email" type="email" placeholder="Masukan E-Mail"
+                                        style="box-shadow: 0px 0px 2px #5F5B00; color: #5F5B00"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email">
+
+                                    <style>
+                                        #email::placeholder {
+                                            color: #5F5B00;
+                                            text-align: center;
+                                            opacity: 0.3;
+                                        }
+
+                                        #email::first-line {
+                                            color: #5F5B00;
+                                        }
+                                    </style>
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 justify-content-center">
+
+                                <div class="col-md-6">
+                                    <input id="password" type="password" placeholder="Masukan Sandi"
+                                        style="box-shadow: 0px 0px 2px #5F5B00; color: #5F5B00"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="new-password">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                    <style>
+                                        #password::placeholder {
+                                            color: #5F5B00;
+                                            text-align: center;
+                                            opacity: 0.3;
+                                        }
+
+                                        #password::first-line {
+                                            color: #5F5B00;
+                                        }
+                                    </style>
+                                </div>
+                            </div>
+
+                            <div class="row mb-5 justify-content-center">
+
+                                <div class="col-md-6">
+                                    <input id="password-confirm" type="password" class="form-control"
+                                        placeholder="Konfirmasi Sandi"
+                                        style="box-shadow: 0px 0px 2px #5F5B00; color: #5F5B00"
+                                        name="password_confirmation" required autocomplete="new-password">
+
+                                    <style>
+                                        #password-confirm::placeholder {
+                                            color: #5F5B00;
+                                            text-align: center;
+                                            opacity: 0.3;
+                                        }
+
+                                        #password-confirm::first-line {
+                                            color: #5F5B00;
+                                        }
+                                    </style>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center mb-2">
+                                <div class="col-md-6 row justify-content-center" style="width: 30%">
+                                    <button type="submit" class="btn"
+                                        style="background-color: #5F5B00; color: #FFFFFF; font-size: 15px; border-radius: 12px">
+                                        {{ __('Daftar') }}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="row justify-content-center"
+                                    style="width: 100%; flex-direction: row; text-align: center; font-size: 13px;">
+                                    <p>Sudah punya akun?
+                                        <a class="" style="color: #5F5B00; font-size: 13px; font-weight: 600"
+                                            type="button" data-bs-toggle="modal"
+                                            data-bs-target="#login">{{ __('Masuk.') }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 </html>
