@@ -168,14 +168,15 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne" aria-controls="flush-collapseOne"
                                 style="color: #5F5B00;">
-                                Accordion Item #1
+                                Apa yang membedakan aplikasi ini dari toko suku cadang sepeda motor lainnya?
                             </button>
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
-                                demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
-                                body.</div>
+                            <div class="accordion-body" style="color: #5F5B00;">
+                                <li>Aplikasi kami menyediakan pengalaman belanja yang mudah, aman, dan cepat.</li>
+                                <li>Stok suku cadang terupdate secara real-time untuk memastikan ketersediaan barang.</li>
+                            </div>
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -183,14 +184,16 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseTwo" aria-expanded="false"
                                 aria-controls="flush-collapseTwo" style="color: #5F5B00;">
-                                Accordion Item #2
+                                Bagaimana cara melakukan pemesanan suku cadang?
                             </button>
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
-                                demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion
-                                body. Let's imagine this being filled with some actual content.</div>
+                            <div class="accordion-body" style="color: #5F5B00;">
+                                <li>Pilih suku cadang yang diinginkan dari katalog kami.</li>
+                                <li>Tambahkan ke keranjang belanja dan lanjutkan ke proses pembayaran.</li>
+                                <li>Ikuti langkah-langkah sederhana untuk menyelesaikan pesanan.</li>
+                            </div>
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -198,16 +201,15 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseThree" aria-expanded="false"
                                 aria-controls="flush-collapseThree" style="color: #5F5B00;">
-                                Accordion Item #3
+                                Apakah ada jaminan kualitas untuk suku cadang yang dibeli?
                             </button>
                         </h2>
                         <div id="flush-collapseThree" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
-                                demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion
-                                body. Nothing more exciting happening here in terms of content, but just filling up the
-                                space to make it look, at least at first glance, a bit more representative of how this would
-                                look in a real-world application.</div>
+                            <div class="accordion-body" style="color: #5F5B00;">
+                                <li>Ya, kami hanya menyediakan suku cadang berkualitas tinggi dan memiliki kebijakan
+                                    pengembalian barang jika terdapat masalah.</li>
+                            </div>
                         </div>
                     </div>
                 </div>

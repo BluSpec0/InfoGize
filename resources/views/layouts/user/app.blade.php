@@ -187,7 +187,7 @@
     </div>
 </body>
 
-<section>
+<section id="masuk">
     <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="login" aria-hidden="true">
         <div class="modal-dialog modal-lg ">
@@ -237,7 +237,7 @@
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <p>Email atau password salah</p>
                                         </span>
                                     @enderror
                                 </div>
@@ -249,7 +249,7 @@
                                     <input id="password" type="password" placeholder="Masukan Sandi"
                                         style="box-shadow: 0px 0px 2px #5F5B00; color: #5F5B00"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="current-password">
+                                        required autocomplete="current-password" autofocus>
 
                                     <style>
                                         #password::placeholder {
@@ -265,7 +265,7 @@
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <p>Password tidak sesuai</p>
                                         </span>
                                     @enderror
                                 </div>
@@ -274,8 +274,8 @@
                             <div class="row mb-5 justify-content-center">
                                 <div class="col-md-6 d-flex justify-content-end">
                                     @if (Route::has('password.request'))
-                                        <a class="btn row" href="{{ route('password.request') }}"
-                                            style="color: #5F5B00; font-size: 13px;">
+                                        <a class="btn row" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#reset" style="color: #5F5B00; font-size: 13px;">
                                             {{ __('Forget Password?') }}
                                         </a>
                                     @endif
@@ -309,7 +309,7 @@
     </div>
 </section>
 
-<section>
+<section id="daftar">
     <div class="modal fade" id="register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="login" aria-hidden="true">
         <div class="modal-dialog modal-lg ">
@@ -387,7 +387,7 @@
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <p>Email sudah digunakan</p>
                                         </span>
                                     @enderror
 
@@ -405,7 +405,7 @@
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <p>{{ $message }}</p>
                                         </span>
                                     @enderror
 
@@ -462,6 +462,83 @@
                                             type="button" data-bs-toggle="modal"
                                             data-bs-target="#login">{{ __('Masuk.') }}</a>
                                     </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="forget">
+    <div class="modal fade" id="reset" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="reset" aria-hidden="true">
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div style="padding: 3rem">
+                    <div class="">
+                        <div class="" style="">
+                            <a class="" style="color: #5F5B00;" data-bs-dismiss="modal"><img
+                                    src="{{ url('/images/backarrow.svg') }}" alt="" width="30"></a>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-1"
+                        style="color: #5F5B00; font-size: 30px; font-weight: 400;">
+                        {{ __('Atur Ulang Sandi') }}</div>
+                    <div class="row justify-content-center mb-4">
+                        <div
+                            style="color: #5F5B00; font-size: 15px; font-weight: 400; opacity: 0.5; max-width: 50%; text-align: center">
+                            {{ __('Silahkan Masukan Email Akun Anda Untuk Melanjutkan.') }}
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('password.email') }}">
+                            @csrf
+
+                            <div class="row mb-3 justify-content-center">
+
+                                <div class="col-md-6">
+                                    <input id="email" type="email" style="box-shadow: 0px 0px 2px #5F5B00;"
+                                        placeholder="Masukan E-mail"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                    <style>
+                                        #email::placeholder {
+                                            color: #5F5B00;
+                                            text-align: center;
+                                            opacity: 0.3;
+                                        }
+
+                                        #email::first-line {
+                                            color: #5F5B00;
+                                        }
+                                    </style>
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-5">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primar"
+                                        style="background-color: #5F5B00; color: #FFFFFF; font-size: 15px; border-radius: 5px">
+                                        {{ __('Kirim email reset password') }}
+                                    </button>
                                 </div>
                             </div>
                         </form>
