@@ -44,7 +44,7 @@
                                     href="{{ Auth::check() ? route('home') : '/' }}" style="color: #5F5B00">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="/products/1" style="color: #5F5B00;">Informasi</a>
+                                <a class="nav-link " href="/info" style="color: #5F5B00;">Informasi</a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link " href="/products/2" style="color: #5F5B00">Produk</a>

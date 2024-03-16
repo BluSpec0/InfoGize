@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row" style="padding-top: 5rem">
             <div class="col-md-12">
-                <a href="{{ url('home') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i></a>
+                <a href="{{ url('/') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i></a>
             </div>
             <div class="col-md-12 mt-1">
                 <div class="card">

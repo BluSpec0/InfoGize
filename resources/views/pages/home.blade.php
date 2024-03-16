@@ -74,7 +74,7 @@
                     </h1>
                 </div>
                 <div class="d-flex flex-column">
-                    @foreach ($products->take(2) as $product)
+                    @foreach ($products->shuffle()->take(2) as $product)
                         <div class="mb-4">
                             <div class="card flex-md-row w-100"
                                 style="border-color: #5F5B00; border-width: 0.5px; box-shadow: 0px 0px 15px #5f5a0040; padding-top: 5px">
@@ -119,7 +119,7 @@
                     </h1>
                 </div>
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex justify-content-between">
-                    @foreach ($products->take(4) as $product)
+                    @foreach ($products->shuffle()->take(4) as $product)
                         <div class="mb-4">
                             <div class="card"
                                 style="max-width: 100vh; max-height: auto; border-color: #5F5B00; border-width: 0.1px; box-shadow: 0px 0px 15px #5f5a0040;">

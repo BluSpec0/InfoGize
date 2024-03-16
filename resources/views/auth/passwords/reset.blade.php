@@ -98,10 +98,11 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Reset Password') }}
+                            <div class="row justify-content-center mb-2">
+                                <div class="col-md-6 row justify-content-center" style="width: 30%">
+                                    <button type="submit" class="btn btn-primar"
+                                        style="background-color: #5F5B00; color: #FFFFFF; font-size: 15px; border-radius: 12px">
+                                        {{ __('Reset Sandi') }}
                                     </button>
                                 </div>
                             </div>
