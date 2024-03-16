@@ -32,6 +32,10 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+Route::get('/info', function () {
+    return view('info');
+});
+
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
