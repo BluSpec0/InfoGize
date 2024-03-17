@@ -44,19 +44,19 @@
                                     href="{{ Auth::check() ? route('home') : '/' }}" style="color: #5F5B00">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="/info" style="color: #5F5B00;">Informasi</a>
+                                <a class="nav-link " href="/informations" style="color: #5F5B00;">Informasi</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link " href="/products/2" style="color: #5F5B00">Produk</a>
+                                <a class="nav-link " href="/products" style="color: #5F5B00">Produk</a>
                             </li>
                             @guest
                                 @if (Route::has('login'))
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#FAQ"
+                                        <a class="nav-link active" aria-current="page" href="/#FAQ"
                                             style="color: #5F5B00">FAQ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#hubungikami"
+                                        <a class="nav-link active" aria-current="page" href="/#hubungikami"
                                             style="color: #5F5B00">Hubungi
                                             Kami</a>
                                     </li>

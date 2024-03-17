@@ -101,7 +101,7 @@
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-end">
-                    <a class="btn row d-flex align-items-center" href="{{ route('password.request') }}"
+                    <a class="btn row d-flex align-items-center" href="{{ "/information" }}"
                         style="color: #5F5B00; font-size: 15px;">
                         {{ __('View All') }}<img src="{{ url('/images/arrow.svg') }}" alt=""
                             style="width: 25px; padding-right: 0px; padding-left: 3px" class="d-flex align-items-center">
@@ -145,7 +145,7 @@
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-end">
-                    <a class="btn row d-flex align-items-center" href="{{ route('password.request') }}"
+                    <a class="btn row d-flex align-items-center" href="{{ "/product" }}"
                         style="color: #5F5B00; font-size: 15px;">
                         {{ __('View All') }}<img src="{{ url('/images/arrow.svg') }}" alt=""
                             style="width: 25px; padding-right: 0px; padding-left: 3px" class="d-flex align-items-center">

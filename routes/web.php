@@ -22,19 +22,11 @@ use Illuminate\Auth\Notifications\ResetPassword;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 
-Route::get('/', [App\Http\Controllers\LproductController::class, 'produk']);
-
-Route::get('/search', [ App\Http\Controllers\SearchController::class,'search']);
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+Route::get('/informations', [App\Http\Controllers\WelcomeController::class, 'informations']);
 
-Route::get('/info', function () {
-    return view('info');
-});
+Route::get('/products', [App\Http\Controllers\WelcomeController::class, 'products']);
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
@@ -81,7 +73,9 @@ Route::post('/reset-password', function (Request $request) {
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 
-Route::get('products/{id}', [ App\Http\Controllers\DetailController::class,'show']);
+Route::get('product-detail/{id}', [ App\Http\Controllers\DetailController::class,'productdetail']);
+
+Route::get('information-detail/{id}', [ App\Http\Controllers\DetailController::class,'informationdetail']);
 
 Route::post('order/{id}', [App\Http\Controllers\DetailController::class, 'order']);
 

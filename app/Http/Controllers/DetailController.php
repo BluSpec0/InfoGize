@@ -12,11 +12,18 @@ use Carbon;
 
 class DetailController extends Controller
 {
-    public function show($id)
+    public function productdetail($id)
     {
         $product = Product::where('id', $id)->first();
 
-        return view('pages.infodetail', compact('product'));
+        return view('pages.productdetail', compact('product'));
+    }
+
+    public function informationdetail($id)
+    {
+        $product = Product::where('id', $id)->first();
+
+        return view('pages.informationdetail', compact('product'));
     }
 
     public function order(Request $request, $id)
