@@ -87,7 +87,7 @@
                                         <p style="margin-bottom: 5px">Kategori: {{ $product->kategori }}</p>
                                     </div>
                                     <div>
-                                        <a href="{{ url('products') }}/{{ $product->id }}" class="btn btn-primary "
+                                        <a href="{{ url('information-detail') }}/{{ $product->id }}" class="btn btn-primary "
                                             style="color: #fff; background-color: #5F5B00; border-color: #5F5B00">
                                             Detail</a>
                                     </div>
@@ -101,7 +101,7 @@
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-end">
-                    <a class="btn row d-flex align-items-center" href="{{ "/information" }}"
+                    <a class="btn row d-flex align-items-center" href="{{ "/informations" }}"
                         style="color: #5F5B00; font-size: 15px;">
                         {{ __('View All') }}<img src="{{ url('/images/arrow.svg') }}" alt=""
                             style="width: 25px; padding-right: 0px; padding-left: 3px" class="d-flex align-items-center">
@@ -145,7 +145,7 @@
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-end">
-                    <a class="btn row d-flex align-items-center" href="{{ "/product" }}"
+                    <a class="btn row d-flex align-items-center" href="{{ "/products" }}"
                         style="color: #5F5B00; font-size: 15px;">
                         {{ __('View All') }}<img src="{{ url('/images/arrow.svg') }}" alt=""
                             style="width: 25px; padding-right: 0px; padding-left: 3px" class="d-flex align-items-center">

@@ -7,20 +7,25 @@ use App\Models\product; // Ganti dengan model yang sesuai
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
-    {
-        $search = $request->$search;
+    public function infosearch(Request $request)
+{
+    $query = $request->input('query');
+    $products = Product::where('product_name', 'LIKE', "%$query%")
+                    ->orWhere('nama', 'LIKE', "%$query%")
+                    ->orWhere('kodepart', 'LIKE', "%$query%")
+                    ->orWhere('kategori', 'LIKE', "%$query%")->get();
 
-        $posts = Post::where(function($query) use ($search){
+    return view('pages.informations', compact('products'));
+}
 
-            $query->where('product_name','like', "%$search%")
-            ->orWhere('deskripsi','like',"%$search%");
-    })
+public function productsearch(Request $request)
+{
+    $query = $request->input('query');
+    $products = Product::where('product_name', 'LIKE', "%$query%")
+                    ->orWhere('nama', 'LIKE', "%$query%")      
+                    ->orWhere('kategori', 'LIKE', "%$query%")->get();
 
-    ->get();
-
-    return view('index', compact('posts','search'));
-
-    }
+    return view('pages.products', compact('products'));
+}
 
 }

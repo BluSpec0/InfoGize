@@ -131,7 +131,7 @@
     </div>
     </nav>
 
-    <main class="" style="margin-bottom: 8rem">
+    <main class="" style="margin-bottom: 4rem">
         @yield('content')
     </main>
 

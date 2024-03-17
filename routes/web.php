@@ -28,6 +28,10 @@ Route::get('/informations', [App\Http\Controllers\WelcomeController::class, 'inf
 
 Route::get('/products', [App\Http\Controllers\WelcomeController::class, 'products']);
 
+Route::get('/infosearch', [App\Http\Controllers\SearchController::class, 'infosearch'])->name('infosearch');
+
+Route::get('/productsearch', [App\Http\Controllers\SearchController::class, 'productsearch'])->name('productsearch');
+
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
