@@ -20,7 +20,7 @@ use Illuminate\Auth\Notifications\ResetPassword;
 |
 */
 
-Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('index');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -31,6 +31,9 @@ Route::get('/products', [App\Http\Controllers\WelcomeController::class, 'product
 Route::get('/infosearch', [App\Http\Controllers\SearchController::class, 'infosearch'])->name('infosearch');
 
 Route::get('/productsearch', [App\Http\Controllers\SearchController::class, 'productsearch'])->name('productsearch');
+
+Route::get('/create', [App\Http\Controllers\Admin\UploadController::class, 'create'])->name('product.create');
+Route::post('/upload', [App\Http\Controllers\Admin\UploadController::class, 'store'])->name('store.product');
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');

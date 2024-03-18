@@ -61,7 +61,7 @@
                                     <p style="margin-bottom: 5px">Kategori: {{ $product->kategori }}</p>
                                 </div>
                                 <div>
-                                    <a href="{{ url('information-detail') }}/{{ $product->id }}" class="btn btn-primary "
+                                    <a href="{{ $product->id }}" class="btn btn-primary "
                                         style="color: #fff; background-color: #5F5B00; border-color: #5F5B00">
                                         Detail</a>
                                 </div>

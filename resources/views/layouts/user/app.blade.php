@@ -91,9 +91,9 @@
                                 </li>
                             @endif
                         @else
-                            <a href="{{ url('order') }}/{{ $product->id }}"><img src="{{ url('/images/cart.svg') }}"
+                            {{-- <a href="{{ url('order') }}/{{ $product->id }}"><img src="{{ url('/images/cart.svg') }}"
                                     alt="" style="width: 25px; padding-right: 0px; padding-left: 3px"
-                                    class=""></a>
+                                    class=""></a> --}}
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
