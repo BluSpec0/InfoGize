@@ -10,10 +10,10 @@ class SearchController extends Controller
     public function infosearch(Request $request)
 {
     $query = $request->input('query');
-    $products = Product::where('product_name', 'LIKE', "%$query%")
-                    ->orWhere('nama', 'LIKE', "%$query%")
-                    ->orWhere('kodepart', 'LIKE', "%$query%")
-                    ->orWhere('kategori', 'LIKE', "%$query%")->get();
+    $products = Product::where('product_name', 'ILIKE', "%$query%")
+                    ->orWhere('nama', 'ILIKE', "%$query%")
+                    ->orWhere('kodepart', 'ILIKE', "%$query%")
+                    ->orWhere('kategori', 'ILIKE', "%$query%")->get();
 
     return view('pages.informations', compact('products'));
 }
@@ -21,9 +21,9 @@ class SearchController extends Controller
 public function productsearch(Request $request)
 {
     $query = $request->input('query');
-    $products = Product::where('product_name', 'LIKE', "%$query%")
-                    ->orWhere('nama', 'LIKE', "%$query%")      
-                    ->orWhere('kategori', 'LIKE', "%$query%")->get();
+    $products = Product::where('product_name', 'ILIKE', "%$query%")
+                    ->orWhere('nama', 'ILIKE', "%$query%")      
+                    ->orWhere('kategori', 'ILIKE', "%$query%")->get();
 
     return view('pages.products', compact('products'));
 }

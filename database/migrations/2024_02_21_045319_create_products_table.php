@@ -20,15 +20,15 @@ return new class extends Migration
             $table->string('kodepart');
             $table->string('kategori');
             $table->string('lokasiparts');
-            $table->string('keterangan');
-            $table->string('rincian1');
-            $table->string('rincian2');
-            $table->string('rincian3');
-            $table->string('rincian4');
-            $table->string('rincian5');
-            $table->string('rincian6');
-            $table->string('rincian7');
-            $table->string('rincian8');
+            $table->string('keterangan', 1500);
+            $table->string('rincian1', 1000);
+            $table->string('rincian2', 1000);
+            $table->string('rincian3', 1000);
+            $table->string('rincian4', 1000);
+            $table->string('rincian5', 1000);
+            $table->string('rincian6', 1000);
+            $table->string('rincian7', 1000);
+            $table->string('rincian8', 1000);
             $table->string('product_image')->nullable(); // Menambahkan kolom gambar produk
             $table->timestamps();
         });

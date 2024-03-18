@@ -61,13 +61,13 @@
                                     <p style="margin-bottom: 5px">Kategori: {{ $product->kategori }}</p>
                                 </div>
                                 <div>
-                                    <a href="{{ $product->id }}" class="btn btn-primary "
+                                    <a href="{{ url('information-detail') }}/{{ $product->id }}" class="btn btn-primary "
                                         style="color: #fff; background-color: #5F5B00; border-color: #5F5B00">
                                         Detail</a>
                                 </div>
                             </div>
 
-                            <img src="{{ url('uploads') }}/{{ $product->product_image }}"
+                            <img src="{{ $product->product_image }}"
                                 class="card-img-right flex-auto d-none d-md-block"
                                 style="padding-right: 20px; max-width: 40vh; max-height: auto; object-position: center; object-fit: scale-down; background-color: #fff; border-color: transparent">
                         </div>

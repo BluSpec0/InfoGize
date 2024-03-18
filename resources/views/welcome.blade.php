@@ -83,8 +83,7 @@
                                 </div>
                             </div>
 
-                            <img src="{{ $product->product_image }}"
-                                class="card-img-right flex-auto d-none d-md-block"
+                            <img src="{{ $product->product_image }}" class="card-img-right flex-auto d-none d-md-block"
                                 style="padding-right: 20px; max-width: 40vh; max-height: auto; object-position: center; object-fit: scale-down; background-color: #fff; border-color: transparent">
                         </div>
                     </div>
@@ -108,7 +107,7 @@
                     Produk
                 </h1>
             </div>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex justify-content-between">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 d-flex">
                 @foreach ($products->shuffle()->take(4) as $product)
                     <div class="mb-4">
                         <div class="card"
@@ -124,10 +123,13 @@
                                         {{ number_format($product->harga, 0, ',', '.') }}</p>
 
                                 </div>
-                                <div class="d-flex justify-content-end"><a
-                                        href="{{ url('products') }}/{{ $product->id }}" class="btn btn-primary"
+                                <div class="d-flex justify-content-between">
+                                    <p style="color: #00000090">{{ $product->lokasiparts }}</p>
+                                    <a href="{{ url('product-detail') }}/{{ $product->id }}"
+                                        class="btn btn-primary align-items-center"
                                         style="color: #fff; background-color: #5F5B00; border-color: #5F5B00;">
-                                        Detail</a></div>
+                                        Detail</a>
+                                </div>
                             </div>
                         </div>
                     </div>

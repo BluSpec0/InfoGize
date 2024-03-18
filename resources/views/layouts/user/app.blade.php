@@ -22,7 +22,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
+<body style="min-height: 100vh; display: flex; flex-direction: column">
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
             style="box-shadow: 0px 0px 15px #00000047; padding-left: 5rem; padding-right: 5rem; padding-top: 10px; padding-bottom: 10px; z-index: 50;width: 100%;">
@@ -135,7 +135,7 @@
         @yield('content')
     </main>
 
-    <footer class="footer mt-auto py-5" style="background-color: #5F5B00;">
+    <footer class="footer mt-auto py-5" style="background-color: #5F5B00; margin-top: auto">
         <div class="container d-flex justify-content-center" style="opacity: 0.75">
             <div class="row row-cols-1">
                 <div class="d-flex justify-content-center" style="margin-bottom: 2.5rem">

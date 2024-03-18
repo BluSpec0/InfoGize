@@ -52,8 +52,7 @@
                     <div class="mb-4">
                         <div class="card"
                             style="max-width: 100vh; max-height: auto; border-color: #5F5B00; border-width: 0.1px; box-shadow: 0px 0px 15px #5f5a0040;">
-                            <img src="{{ url('uploads') }}/{{ $product->product_image }}" class="card-img-top"
-                                alt="..."
+                            <img src="{{ $product->product_image }}" class="card-img-top" alt="..."
                                 style="max-width: auto; max-height: 30vh; object-position: center; object-fit: scale-down; background-color: #fff; border-color: transparent">
                             <div class="card-body">
                                 <h5 class="card-title" style="min-height: 50px; font-size: 19px; font-weight: 400">
