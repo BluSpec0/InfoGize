@@ -95,35 +95,20 @@
                                     alt="" style="width: 25px; padding-right: 0px; padding-left: 3px"
                                     class=""></a> --}}
 
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Profil') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('History') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                            @if (Auth::user()->avatar)
+                                <a href="/profile"><img src="{{ Auth::user()->avatar }}" alt="profile"
+                                        class="d-flex justify-content-center"
+                                        style="width: 40px; height: 40px; object-position: center; object-fit: cover; align-items: center;
+                                background-size: cover; background-position: center; border: 1px solid #5F5B00; border-radius: 5px"></a>
+                                <div class="mb-4">
+                                @else
+                                    <a href="/profile"><img src="{{ url('/images/defaultavatar.png') }}" alt="profile"
+                                            class="d-flex justify-content-center"
+                                            style="width: 40px; height: 40px; object-position: center; object-fit: cover; align-items: center;
+                                background-size: cover; background-position: center; border: 1px solid #5F5B00; border-radius: 5px"></a>
+                                    <div class="mb-4">
+                            @endif
                         @endguest
                     </div>
                 </div>
@@ -184,7 +169,6 @@
         </div>
     </footer>
 
-    </div>
 </body>
 
 <section id="masuk">

@@ -22,15 +22,17 @@ use Illuminate\Auth\Notifications\ResetPassword;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('index');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/informations', [App\Http\Controllers\WelcomeController::class, 'informations']);
-
 Route::get('/products', [App\Http\Controllers\WelcomeController::class, 'products']);
-
 Route::get('/infosearch', [App\Http\Controllers\SearchController::class, 'infosearch'])->name('infosearch');
-
 Route::get('/productsearch', [App\Http\Controllers\SearchController::class, 'productsearch'])->name('productsearch');
+
+Route::group(['middleware'=> 'auth'], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+    Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+});
 
 Route::get('/create', [App\Http\Controllers\Admin\UploadController::class, 'create'])->name('product.create');
 Route::post('/upload', [App\Http\Controllers\Admin\UploadController::class, 'store'])->name('store.product');
@@ -38,7 +40,6 @@ Route::post('/upload', [App\Http\Controllers\Admin\UploadController::class, 'sto
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
-
 Route::post('/forgot-password', function (Request $request) {
     $request->validate(['email' => 'required|email']);
  
@@ -50,11 +51,9 @@ Route::post('/forgot-password', function (Request $request) {
                 ? back()->with(['status' => __($status)])
                 : back()->withErrors(['email' => __($status)]);
 })->middleware('guest')->name('password.email');
-
 Route::get('/reset-password/{token}', function (string $token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
-
 Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'token' => 'required',
@@ -80,6 +79,11 @@ Route::post('/reset-password', function (Request $request) {
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 
+
+
+
+
+
 Route::get('product-detail/{id}', [ App\Http\Controllers\DetailController::class,'productdetail']);
 
 Route::get('information-detail/{id}', [ App\Http\Controllers\DetailController::class,'informationdetail']);
@@ -91,10 +95,6 @@ Route::get('check-out', [App\Http\Controllers\DetailController::class, 'check_ou
 Route::delete('check-out/{id}', [App\Http\Controllers\DetailController::class, 'delete']);
 
 Route::get('konfirmasi-check-out', [App\Http\Controllers\DetailController::class, 'konfirmasi']);
-
-Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index']);
-
-Route::post('profile', [App\Http\Controllers\ProfileController::class, 'update']);
 
 Route::get('history',[App\Http\Controllers\HistoryController::class, 'index']);
 

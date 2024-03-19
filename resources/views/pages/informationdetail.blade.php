@@ -24,8 +24,7 @@
                                         <p style="margin-bottom: 5px">Kategori: {{ $product->kategori }}</p>
                                     </div>
                                     <div class="mb-4">
-                                        <a href="{{ url('product-detail') }}/{{ $product->id }}"
-                                            class="btn btn-primary "
+                                        <a href="{{ url('product-detail') }}/{{ $product->id }}" class="btn btn-primary "
                                             style="color: #fff; background-color: #5F5B00; border-color: #5F5B00; width: 6rem; border-radius: 10px">
                                             Beli</a>
                                     </div>
@@ -42,16 +41,33 @@
                             <p>Berikut adalah deskripsi rinci dan detail dari {{ $product->product_name }} :</p>
                             <div style="text-align: justify; flex-direction: column; gap: 1px;color: #00000080 ">
                                 <ul>
+                                    <?php if ($product->rincian1): ?>
                                     <li>{{ $product->rincian1 }}</li>
+                                    <?php endif; ?>
+                                    <?php if ($product->rincian2): ?>
                                     <li>{{ $product->rincian2 }}</li>
+                                    <?php endif; ?>
+                                    <?php if ($product->rincian3): ?>
                                     <li>{{ $product->rincian3 }}</li>
+                                    <?php endif; ?>
+                                    <?php if ($product->rincian4): ?>
                                     <li>{{ $product->rincian4 }}</li>
+                                    <?php endif; ?>
+                                    <?php if ($product->rincian5): ?>
                                     <li>{{ $product->rincian5 }}</li>
+                                    <?php endif; ?>
+                                    <?php if ($product->rincian6): ?>
                                     <li>{{ $product->rincian6 }}</li>
+                                    <?php endif; ?>
+                                    <?php if ($product->rincian7): ?>
                                     <li>{{ $product->rincian7 }}</li>
+                                    <?php endif; ?>
+                                    <?php if ($product->rincian8): ?>
                                     <li>{{ $product->rincian8 }}</li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">

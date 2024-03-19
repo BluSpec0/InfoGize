@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('avatar')->nullable();
+            $table->string('fullname')->nullable();
+            $table->string('birthday')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('nohp')->nullable();
+            $table->string('address')->nullable();
         });
     }
 
