@@ -44,10 +44,11 @@
                                     href="{{ Auth::check() ? route('home') : '/' }}" style="color: #5F5B00">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="/informations" style="color: #5F5B00;">Informasi</a>
+                                <a class="nav-link " href="{{ route('informations') }}"
+                                    style="color: #5F5B00;">Informasi</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link " href="/products" style="color: #5F5B00">Produk</a>
+                                <a class="nav-link " href="{{ route('products') }}" style="color: #5F5B00">Produk</a>
                             </li>
                             @guest
                                 @if (Route::has('login'))
@@ -62,10 +63,6 @@
                                     </li>
                                 @endif
                             @else
-                                <li class="nav-item">
-                                    <a class="nav-link " aria-current="page" href="#" style="color: #5F5B00">Lacak
-                                        Paket</a>
-                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link " aria-current="page" href="#"
                                         style="color: #5F5B00">Riwayat</a>
@@ -91,20 +88,19 @@
                                 </li>
                             @endif
                         @else
-                            <a href="{{ url('order') }}/{{ $product->id }}"><img src="{{ url('/images/cart.svg') }}"
-                                    alt="" style="width: 25px; padding-right: 0px; padding-left: 3px"
-                                    class=""></a>
-
+                            <div class="d-flex align-items-center" style="margin-right: 1.3rem"><a
+                                    href="{{ route('cart.view') }}"><img src="{{ url('/images/cart.svg') }}" alt=""
+                                        style="width: 27px; padding-right: 0px; padding-left: 0px" class=""></a></div>
 
                             @if (Auth::user()->avatar)
-                                <a href="/profile"><img src="{{ Auth::user()->avatar }}" alt="profile"
+                                <a href="{{ route('profile') }}"><img src="{{ Auth::user()->avatar }}" alt="profile"
                                         class="d-flex justify-content-center"
                                         style="width: 40px; height: 40px; object-position: center; object-fit: cover; align-items: center;
                                 background-size: cover; background-position: center; border: 1px solid #5F5B00; border-radius: 5px"></a>
                                 <div class="mb-4">
                                 @else
-                                    <a href="/profile"><img src="{{ url('/images/defaultavatar.png') }}" alt="profile"
-                                            class="d-flex justify-content-center"
+                                    <a href="{{ route('profile') }}"><img src="{{ url('/images/defaultavatar.png') }}"
+                                            alt="profile" class="d-flex justify-content-center"
                                             style="width: 40px; height: 40px; object-position: center; object-fit: cover; align-items: center;
                                 background-size: cover; background-position: center; border: 1px solid #5F5B00; border-radius: 5px"></a>
                                     <div class="mb-4">

@@ -56,9 +56,9 @@
                                 <h5 class="card-title mb-4" style="font-size: 20px; font-weight: 400">
                                     {{ $product->product_name }}</h5>
                                 <div class="mb-4" style="flex-direction: column; gap: 1px;color: #00000050 ">
-                                    <p style="margin-bottom: 0px">Nama Resmi Produk: {{ $product->nama }}</p>
-                                    <p style="margin-bottom: 0px">Kode Part: {{ $product->kodepart }}</p>
-                                    <p style="margin-bottom: 5px">Kategori: {{ $product->kategori }}</p>
+                                    <p style="margin-bottom: 0px">Nama Resmi Produk : {{ $product->nama }}</p>
+                                    <p style="margin-bottom: 0px">Kode Part : {{ $product->kodepart }}</p>
+                                    <p style="margin-bottom: 5px">Kategori : {{ $product->kategori }}</p>
                                 </div>
                                 <div>
                                     <a href="{{ url('information-detail') }}/{{ $product->id }}" class="btn btn-primary "

@@ -38,9 +38,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="navbar-nav ms-auto" style="flex-direction: row; gap: 8px;">
-                        {{-- <a href="{{ url('order') }}/{{ $product->id }}"><img src="{{ url('/images/cart.svg') }}"
-                                    alt="" style="width: 25px; padding-right: 0px; padding-left: 3px"
-                                    class=""></a> --}}
+                        <div class="d-flex align-items-center" style="margin-right: 1.3rem"><a
+                                href="{{ route('cart.view') }}"><img src="{{ url('/images/cart.svg') }}" alt=""
+                                    style="width: 27px; padding-right: 0px; padding-left: 0px" class=""></a></div>
 
 
                         @if (Auth::user()->avatar)

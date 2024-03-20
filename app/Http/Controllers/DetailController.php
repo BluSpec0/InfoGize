@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\order;
-use App\Models\orderdetail;
+use App\Models\order_detail;
 use App\Models\product; 
 use Auth;
 use Carbon;
@@ -51,30 +51,29 @@ class DetailController extends Controller
 	    	$order->save();
     	}
     	
-
     	//simpan ke database pesanan detail
     	$order_baru = order::where('user_id', Auth::user()->id)->where('status',0)->first();
 
     	//cek pesanan detail
-    	$cek_order_detail = orderdetail::where('product_id', $product->id)->where('order_id', $order_baru->id)->first();
+    	$cek_order_detail = order_detail::where('product_id', $product->id)->where('order_id', $order_baru->id)->first();
     	if(empty($cek_order_detail))
     	{
-    		$orderdetail = new orderdetail;
-	    	$orderdetail->product_id = $product->id;
-	    	$orderdetail->order_id = $order_baru->id;
-	    	$orderdetail->jumlah = $request->jumlah_pesan;
-	    	$orderdetail->jumlah_harga = $product->harga*$request->jumlah_pesan;
-	    	$orderdetail->save();
+    		$order_detail = new order_detail;
+	    	$order_detail->product_id = $product->id;
+	    	$order_detail->order_id = $order_baru->id;
+	    	$order_detail->jumlah = $request->jumlah_pesan;
+	    	$order_detail->jumlah_harga = $product->harga*$request->jumlah_pesan;
+	    	$order_detail->save();
     	}else 
     	{
-    		$orderdetail = orderdetail::where('order_id', $product->id)->where('order_id', $order_baru->id)->first();
+    		$order_detail = order_detail::where('order_id', $product->id)->where('order_id', $order_baru->id)->first();
 
-    		$orderdetail->jumlah = $orderdetail->jumlah+$request->jumlah_pesan;
+    		$order_detail->jumlah = $order_detail->jumlah+$request->jumlah_pesan;
 
     		//harga sekarang
     		$harga_order_detail_baru = $product->harga*$request->jumlah_pesan;
-	    	$order_detail->jumlah_harga = $order_detail->jumlah_harga+$harga_order_detail_baru;
-	    	$order_detail->update();
+	    	$order->jumlah_harga = $order->jumlah_harga+$harga_order_detail_baru;
+	    	$order->update();
     	}
 
     	//jumlah total
@@ -89,19 +88,18 @@ class DetailController extends Controller
     public function check_out()
     {
         $order = order::where('user_id', Auth::user()->id)->where('status',0)->first();
- 	$orderdetails = [];
+ 	    $orderdetails = [];
         if(!empty($order))
         {
-            $orderdetails = orderdetail::where('order_id', $order->id)->get();
-
+            $orderdetails = order::where('order_id', $order->id)->get();
         }
         
-        return view('pages.check_out', compact('order', 'orderdetails'));
+        return view('pages.check_out', compact('check_out', 'orderdetails'));
     }
 
     public function delete($id)
     {
-        $orderdetail = orderdetail::where('id', $id)->first();
+        $orderdetail = order::where('id', $id)->first();
 
         $order = order::where('id', $orderdetail->order_id)->first();
         $order->jumlah_harga = $order->jumlah_harga-$orderdetail->jumlah_harga;
@@ -131,10 +129,10 @@ class DetailController extends Controller
         $order->status = 1;
         $order->update();
 
-        $orderdetails = orderdetail::where('order_id', $order_id)->get();
+        $orderdetails = order_detail::where('order_id', $order_id)->get();
         foreach ($orderdetails as $orderdetail) {
-            $product = produk::where('id', $orderdetail->product_id)->first();
-            $product->stok = $product->stok-$order_detail->jumlah;
+            $product = product::where('id', $orderdetail->product_id)->first();
+            $product->stok = $product->stok-$order->jumlah;
             $product->update();
         }
 
