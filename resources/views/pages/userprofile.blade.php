@@ -65,7 +65,8 @@
                 </div>
 
                 <div class=" mb-3">
-                    <a href="{{ '/home' }}" class="btn btn-primary d-flex justify-content-center"
+                    <a class="btn btn-primary d-flex justify-content-center" data-bs-toggle="modal"
+                        data-bs-target="#password" type="button"
                         style="color: #5F5B00; background-color: #fff; border-color: #5F5B00">
                         Ubah Kata Sandi</a>
                 </div>
@@ -115,12 +116,13 @@
                         <hr style="color: #5F5B00; width: 100%;">
                         <p style="font-size: 17px">{{ Auth::user()->nohp }}</p>
                         <div class="d-flex justify-content-end">
-                            <a class="btn btn-primary btn-md " type="button" data-bs-toggle="modal" data-bs-target="#login"
+                            <a class="btn btn-primary btn-md " type="button" data-bs-toggle="modal"
+                                data-bs-target="#biodata"
                                 style="background-color: #5F5B00; color: #FFFFFF; font-size: 13px; border-radius: 5px; border-color: #5F5B00">{{ __('Ubah Biodata') }}</a>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-alamat" role="tabpanel" aria-labelledby="nav-alamat-tab">
-                        <div style="border: 1px solid #5F5B00; border-radius: 10px; padding: 1rem">
+                        <div style="border: 1px solid #5F5B00; border-radius: 10px; padding: 1rem" class="mb-4">
                             <div class="d-flex gap-1" style="font-size: 17px;">
                                 <p style="margin-bottom: 0px">{{ Auth::user()->fullname }}</p>
                                 <p style="margin-bottom: 0px">(
@@ -128,6 +130,11 @@
                                 </p>
                             </div>
                             <p style="margin-bottom: 0px">{{ Auth::user()->address }}</p>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-primary btn-md " type="button" data-bs-toggle="modal"
+                                data-bs-target="#alamat"
+                                style="background-color: #5F5B00; color: #FFFFFF; font-size: 13px; border-radius: 5px; border-color: #5F5B00">{{ __('Ubah Alamat') }}</a>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-lainnya" role="tabpanel" aria-labelledby="nav-lainnya-tab">
@@ -170,66 +177,243 @@
                 </div>
             </div>
         </div>
-
-        <div class="container">
-            <h1>Edit User</h1>
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <form action="{{ route('profile.update', $user) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name"
-                        value="{{ $user->name }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email"
-                        value="{{ $user->email }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="fullname">fullname</label>
-                    <input type="text" class="form-control" id="fullname" name="fullname"
-                        value="{{ $user->fullname }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select class="form-control" id="gender" name="gender">
-                        <option value="Laki - laki" {{ $user->gender === 'Laki - laki' ? 'selected' : '' }}>Laki - laki
-                        </option>
-                        <option value="Perempuan" {{ $user->gender === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                    </select>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="birthday">birthday</label>
-                    <input type="date" class="form-control" id="birthday" name="birthday"
-                        value="{{ $user->birthday }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="nohp">nohp</label>
-                    <input type="text" class="form-control" id="nohp" name="nohp"
-                        value="{{ $user->nohp }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="address">address</label>
-                    <input type="text" class="form-control" id="address" name="address"
-                        value="{{ $user->address }}">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
     @endsection
+
+    <section id="Bio">
+        <form action="{{ route('profile.update', $user) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="modal fade" id="biodata" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="biodata" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel"
+                                style="color: #5F5B00; font-size: 20px; font-weight: 400;">Ubah Data</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div style="padding: 1rem">
+
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+
+                                    <div class="row mb-1"
+                                        style="color: #5F5B00; font-size: 20px; font-weight: 400; margin-left: 1px">
+                                        {{ __('Biodata') }}</div>
+                                    <div class=" mb-3 justify-content-center">
+                                        <div class="form-group">
+                                            <input id="fullname" type="text"
+                                                style="box-shadow: 0px 0px 2px #5F5B00;" placeholder="Masukan Nama"
+                                                class="form-control" name="fullname" value="{{ $user->fullname }}"
+                                                autofocus>
+
+                                            <style>
+                                                #fullname::placeholder {
+                                                    color: #5F5B00;
+                                                    text-align: center;
+                                                    opacity: 0.3;
+                                                }
+                                            </style>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 justify-content-center">
+                                        <div class="form-group">
+                                            <input id="birthday" type="date"
+                                                style="box-shadow: 0px 0px 2px #5F5B00;"
+                                                placeholder="Masukan Tanggal Lahir" class="form-control"
+                                                name="birthday" value="{{ $user->birthday }}" autofocus>
+
+                                            <style>
+                                                #birthday::placeholder {
+                                                    color: #5F5B00;
+                                                    text-align: center;
+                                                    opacity: 0.3;
+                                                }
+
+                                                #birthday::first-line {
+                                                    color: #5F5B00;
+                                                }
+                                            </style>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 justify-content-center">
+                                        <div class="form-group">
+                                            <select class="form-control" id="gender" name="gender"
+                                                style="box-shadow: 0px 0px 2px #5F5B00;" placeholder="Masukan Gender">
+                                                <option value="Laki - laki"
+                                                    {{ $user->gender === 'Laki - laki' ? 'selected' : '' }}>Laki -
+                                                    laki
+                                                </option>
+                                                <option value="Perempuan"
+                                                    {{ $user->gender === 'Perempuan' ? 'selected' : '' }}>Perempuan
+                                                </option>
+                                            </select>
+
+                                            <style>
+                                                #gender::placeholder {
+                                                    color: #5F5B00;
+                                                    text-align: center;
+                                                    opacity: 0.3;
+                                                }
+
+                                                #gender::first-line {
+                                                    color: #5F5B00;
+                                                }
+                                            </style>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-1 mt-3"
+                                        style="color: #5F5B00; font-size: 20px; font-weight: 400; margin-left: 1px">
+                                        {{ __('Kontak') }}</div>
+                                    <div class="mb-3 justify-content-center">
+                                        <div class="form-group">
+                                            <input id="nohp" type="number"
+                                                style="box-shadow: 0px 0px 2px #5F5B00;"
+                                                placeholder="Masukan Nomer Handphone" class="form-control"
+                                                name="nohp" value="{{ $user->nohp }}" autofocus>
+
+                                            <style>
+                                                #nohp::placeholder {
+                                                    color: #5F5B00;
+                                                    text-align: center;
+                                                    opacity: 0.3;
+                                                }
+
+                                                #nohp::first-line {
+                                                    color: #5F5B00;
+                                                }
+                                            </style>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <div class="col-md-6 row justify-content-center"
+                                            style="width: 15%; margin-right: 1px">
+                                            <button type="submit" class="btn btn-primar"
+                                                style="background-color: #5F5B00; color: #FFFFFF; font-size: 13px; border-radius: 7px">
+                                                {{ __('Submit') }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section id="Address">
+        <form action="{{ route('profile.update', $user) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="modal fade" id="alamat" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="alamat" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel"
+                                style="color: #5F5B00; font-size: 20px; font-weight: 400;">Ubah Data</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div style="padding: 1rem">
+
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+
+                                    <div class="row mb-1"
+                                        style="color: #5F5B00; font-size: 20px; font-weight: 400; margin-left: 1px">
+                                        {{ __('Alamat') }}</div>
+                                    <div class=" mb-3 justify-content-center">
+                                        <div class="form-group">
+                                            <textarea id="address" style="box-shadow: 0px 0px 2px #5F5B00;" placeholder="Masukan Nama" class="form-control"
+                                                name="address" autofocus>{{ $user->address }}</textarea>
+
+                                            <style>
+                                                #address::placeholder {
+                                                    color: #5F5B00;
+                                                    text-align: center;
+                                                    opacity: 0.3;
+                                                }
+                                            </style>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <div class="col-md-6 row justify-content-center"
+                                            style="width: 15%; margin-right: 1px">
+                                            <button type="submit" class="btn btn-primar"
+                                                style="background-color: #5F5B00; color: #FFFFFF; font-size: 13px; border-radius: 7px">
+                                                {{ __('Submit') }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section id="ChangePW">
+        <form action="{{ route('profile.update', $user) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="modal fade" id="password" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="password" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel"
+                                style="color: #5F5B00; font-size: 20px; font-weight: 400;">Ubah Data</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div style="padding: 1rem">
+
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('password.update') }}">
+                                    @csrf
+
+                                    <div class="form-group">
+                                        <label for="current_password">{{ __('Current Password') }}</label>
+                                        <input id="current_password" type="password" class="form-control"
+                                            name="current_password" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="new_password">{{ __('New Password') }}</label>
+                                        <input id="new_password" type="password" class="form-control"
+                                            name="new_password" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label
+                                            for="new_password_confirmation">{{ __('Confirm New Password') }}</label>
+                                        <input id="new_password_confirmation" type="password" class="form-control"
+                                            name="new_password_confirmation" >
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Change Password') }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
