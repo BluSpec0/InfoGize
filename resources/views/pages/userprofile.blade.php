@@ -390,20 +390,20 @@
                                     <div class="form-group">
                                         <label for="current_password">{{ __('Current Password') }}</label>
                                         <input id="current_password" type="password" class="form-control"
-                                            name="current_password" >
+                                            name="current_password">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="new_password">{{ __('New Password') }}</label>
                                         <input id="new_password" type="password" class="form-control"
-                                            name="new_password" >
+                                            name="new_password">
                                     </div>
 
                                     <div class="form-group">
                                         <label
                                             for="new_password_confirmation">{{ __('Confirm New Password') }}</label>
                                         <input id="new_password_confirmation" type="password" class="form-control"
-                                            name="new_password_confirmation" >
+                                            name="new_password_confirmation">
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">

@@ -12,6 +12,8 @@ class ChekoutController extends Controller
     public function view($id)
     {
         $product = Product::where('id', $id)->first();
-        return view('pages.checkout', compact('product'));
+        $user = User::where('id', Auth::user()->id)->first();
+
+        return view('pages.checkout', compact('product', 'user'));
     }
 }
