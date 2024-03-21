@@ -23,7 +23,7 @@
 </head>
 
 <body style="min-height: 100vh; display: flex; flex-direction: column">
-    <div id="app">
+    <div id="app" style="min-height: 100vh; display: flex; flex-direction: column">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
             style="box-shadow: 0px 0px 15px #00000047; padding-left: 5rem; padding-right: 5rem; padding-top: 10px; padding-bottom: 10px; z-index: 50;width: 100%;">
             <div class="container d-flex justify-content-between">
@@ -127,10 +127,12 @@
                     style="font-size: 17px; flex-direction: row; gap: 2rem; text-transform: uppercase; margin-bottom: 2.5rem">
                     <a class="nav-link " href="{{ Auth::check() ? route('home') : '/' }}"
                         style="color: #FFFFFF">Beranda</a>
-                    <a class="nav-link " href="/products/1" style="color: #FFFFFF;">Informasi</a>
-                    <a class="nav-link " href="/products/1" style="color: #FFFFFF;">Produk</a>
-                    <a class="nav-link " href="/#FAQ" style="color: #FFFFFF;">FAQ</a>
-                    <a class="nav-link " href="/#hubungikami" style="color: #FFFFFF;">Hubungi Kami</a>
+                    <a class="nav-link " href="{{ route('informations') }}" style="color: #FFFFFF;">Informasi</a>
+                    <a class="nav-link " href="{{ route('products') }}" style="color: #FFFFFF;">Produk</a>
+                    <a class="nav-link " href="{{ Auth::check() ? url('/home#FAQ') : '/#FAQ' }}"
+                        style="color: #FFFFFF;">FAQ</a>
+                    <a class="nav-link " href="{{ Auth::check() ? url('/home#hubungikami') : '/#hubungikami' }}"
+                        style="color: #FFFFFF;">Hubungi Kami</a>
                 </div>
 
                 <div class="d-flex justify-content-center mb-3">

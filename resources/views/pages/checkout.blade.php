@@ -48,26 +48,6 @@
                                     <p style="margin-bottom: 5px">Stok : {{ $product->stok }}</p>
                                     <p style="margin-bottom: 5px">{{ $product->keterangan }}</p>
                                 </div>
-                                <div class="d-flex justify-content-end">
-                                    <div style="">
-                                        <h1 style="font-size: 25px; font-weight: 400">Produk lainnya</h1>
-                                        <div class="d-flex gap-2">
-                                            @foreach ($otherProducts->shuffle() as $otherProduct)
-                                                <a href="{{ url('product-detail') }}/{{ $otherProduct->id }}">
-                                                    <div class="" style="width: fit-content">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <img src="{{ $otherProduct->product_image }}"
-                                                                    alt=""
-                                                                    style="width: 60px; height: 60px; object-position: center; object-fit: cover; align-items: center;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

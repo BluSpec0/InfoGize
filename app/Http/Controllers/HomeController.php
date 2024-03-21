@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,8 +26,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(20);
         
+        $products = Product::paginate(20);
         return view('pages/home', compact('products'));
+    }
+
+    public function role()
+    {
+        $usertype=Auth()->user()->usertype;
+
+        if($usertype== null)
+        {
+            return view('pages.home');
+        }
+        else if($usertype== 'admin')
+        {
+            return view('pages.admin.dashboard');
+        }
+        else {
+            return redirect()->back();
+        }
     }
 }

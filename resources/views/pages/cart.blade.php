@@ -39,6 +39,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="" style="">
+                                    <form method="POST" action="{{ route('cart.delete', ['id' => $item->id]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="btn btn-primary btn-sm col-6 d-flex justify-content-center"
+                                            style="color: #fff; background-color: #ffffff; border-color: #ffffff; border-width: 2px; width: 100%">
+                                            <img src="{{ url('/images/cancel.svg') }}" alt=""
+                                                style="width: 27px; padding-right: 0px; padding-left: 0px; opacity: 0.5;"
+                                                class=""></button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     @endforeach

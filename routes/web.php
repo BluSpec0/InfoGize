@@ -24,9 +24,11 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name(
 Route::get('/informations', [App\Http\Controllers\WelcomeController::class, 'informations'])->name('informations');
 Route::get('/products', [App\Http\Controllers\WelcomeController::class, 'products'])->name('products');
 Route::get('product-detail/{id}', [ App\Http\Controllers\DetailController::class,'productdetail']);
+Route::get('product-detail/{id}', [ App\Http\Controllers\DetailController::class,'showother']);
 Route::get('information-detail/{id}', [ App\Http\Controllers\DetailController::class,'informationdetail']);
 Route::get('/infosearch', [App\Http\Controllers\SearchController::class, 'infosearch'])->name('infosearch');
 Route::get('/productsearch', [App\Http\Controllers\SearchController::class, 'productsearch'])->name('productsearch');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'role'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -34,6 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'view'])->name('cart.view');
     Route::put('/cart', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
+    Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
+    Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'delete'])->name('cart.delete');
+    Route::get('check-out/{id}', [ App\Http\Controllers\ChekoutController::class,'view']);
+
     Route::get('/change-password', [App\Http\Controllers\ChangePasswordController::class, 'showChangePasswordForm'])->name('password.change');
     Route::post('/change-password', [App\Http\Controllers\ChangePasswordController::class, 'changePassword'])->name('password.update');
 });
@@ -82,12 +88,5 @@ Route::post('/reset-password', function (Request $request) {
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
-
-// Route::post('pages/{id}', [App\Http\Controllers\DetailController::class, 'order']);
-// Route::get('check-out', [App\Http\Controllers\DetailController::class, 'check_out']);
-// Route::delete('check-out/{id}', [App\Http\Controllers\DetailController::class, 'delete']);
-// Route::get('konfirmasi-check-out', [App\Http\Controllers\DetailController::class, 'konfirmasi']);
-// Route::get('history',[App\Http\Controllers\HistoryController::class, 'index']);
-// Route::get('history/{id}',[App\Http\Controllers\HistoryController::class, 'detail']);
 
 Auth::routes();

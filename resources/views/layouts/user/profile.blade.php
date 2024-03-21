@@ -68,6 +68,12 @@
         @yield('content')
     </main>
 
+    <footer style="background-color: #f2f2f2; padding: 10px; margin-top: auto; width: 100%; text-align: center;">
+        <span style="color: #00000055; margin-bottom: 0; vertical-align: middle;">&copy;Copyright 2024
+            InfoGize Indonesia</span>
+    </footer>
+
+
     </div>
 </body>
 
