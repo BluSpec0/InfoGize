@@ -31,8 +31,7 @@
                                                 class=""></button>
                                     </form>
                                     <div>
-                                        <a href="{{ url('check-out') }}/{{ $product->id }}"
-                                            class="btn btn-lg btn-primary "
+                                        <a href="{{ url('check-out') }}/{{ $product->id }}" class="btn btn-lg btn-primary "
                                             style="color: #fff; background-color: #5F5B00; border-color: #5F5B00">
                                             Beli</a>
                                     </div>
@@ -48,7 +47,7 @@
                                     <p style="margin-bottom: 5px">Stok : {{ $product->stok }}</p>
                                     <p style="margin-bottom: 5px">{{ $product->keterangan }}</p>
                                 </div>
-                                <div class="d-flex justify-content-end">
+                                <div class="d-flex">
                                     <div style="">
                                         <h1 style="font-size: 25px; font-weight: 400">Produk lainnya</h1>
                                         <div class="d-flex gap-2">

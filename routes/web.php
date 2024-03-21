@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'view'])->name('cart.view');
-    Route::put('/cart', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
+    Route::put('/cart/{id}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
     Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
     Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'delete'])->name('cart.delete');
     Route::get('check-out/{id}', [ App\Http\Controllers\ChekoutController::class,'view']);

@@ -19,7 +19,6 @@ class ProfileController extends Controller
     public function index()
     {
     	$user = User::where('id', Auth::user()->id)->first();
-
     	return view('pages/userprofile', compact('user'));
     }
 
@@ -58,10 +57,10 @@ class ProfileController extends Controller
 	// 	if (!empty($request->avatar)) {
     //     $user->avatar = $image_url;
    	// 	}
-    	if(!empty($request->password))
-    	{
-    		$user->password = Hash::make($request->password);
-    	}
+    	// if(!empty($request->password))
+    	// {
+    	// 	$user->password = Hash::make($request->password);
+    	// }
     	
     	$user->update();
 

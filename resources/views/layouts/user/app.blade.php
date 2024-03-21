@@ -23,7 +23,7 @@
 </head>
 
 <body style="min-height: 100vh; display: flex; flex-direction: column">
-    <div id="app" style="min-height: 100vh; display: flex; flex-direction: column">
+    <div id="app" style="display: flex; flex-direction: column">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
             style="box-shadow: 0px 0px 15px #00000047; padding-left: 5rem; padding-right: 5rem; padding-top: 10px; padding-bottom: 10px; z-index: 50;width: 100%;">
             <div class="container d-flex justify-content-between">

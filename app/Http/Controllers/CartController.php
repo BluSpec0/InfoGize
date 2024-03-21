@@ -17,21 +17,29 @@ class CartController extends Controller
     return view('pages.cart', ['cart' => $carts]);
     }
 
-    public function update(Request $request, $id)
-	{
-    	  $request->validate([
-            'jumlah'  => 'required|numeric|min:1',
-        ]);
-    	$cart = Cart::findOrFail($id);
-
-        // Memperbarui data keranjang dengan data dari request
-        $cart->update([
-            'jumlah' => $request->filled('jumlah') ? $request->jumlah : 1,
-            // Anda bisa menambahkan kolom lain yang ingin diperbarui di sini
-        ]);
-
-    	return redirect()->route('cart.view');
+    public function update(Request $request)
+{
+    // Jika input 'jumlah' kosong, tetapkan nilai defaultnya menjadi 1
+    if (!$request->filled('jumlah')) {
+        $request->merge(['jumlah' => 1]);
     }
+
+    $request->validate([
+        'jumlah' => 'required|numeric|min:1',
+    ]);
+
+    $cart = Cart::where('id', $request->id)->first();
+
+    if ($cart) {
+        $cart->jumlah = $request->jumlah;
+        $cart->save();
+
+        return redirect()->route('cart.view')->with('success', 'Jumlah item dalam keranjang berhasil diperbarui.');
+    }
+
+    return redirect()->route('cart.view')->with('error', 'Item dalam keranjang tidak ditemukan.');
+}
+
 
     public function delete($id)
     {

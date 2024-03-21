@@ -27,6 +27,25 @@
                                     </div>
                                     <div>
                                         <div class="d-flex gap-2 justify-content-end align-items-center">
+                                            <form id="updateForm" action="{{ route('cart.update', $item->id) }}"
+                                                class="d-flex justify-content-end" style="width: fit-content"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
+
+                                                <div class="form-group col-4 ">
+                                                    <input type="number" name="jumlah" id="jumlah" class="form-control"
+                                                        value="{{ $item->jumlah ? $item->jumlah : 1 }}" min="1"
+                                                        onchange="submitForm()">
+                                                </div>
+                                            </form>
+
+                                            <script>
+                                                function submitForm() {
+                                                    document.getElementById("updateForm").submit();
+                                                }
+                                            </script>
+
                                             <div class="d-flex align-items-center">
                                                 <p style="font-size: 20px; margin: 0%" class="d-flex align-items-center">Rp.
                                                     {{ number_format($item->product->harga * $item->jumlah, 0, ',', '.') }}
