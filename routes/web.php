@@ -28,7 +28,6 @@ Route::get('product-detail/{id}', [ App\Http\Controllers\DetailController::class
 Route::get('information-detail/{id}', [ App\Http\Controllers\DetailController::class,'informationdetail']);
 Route::get('/infosearch', [App\Http\Controllers\SearchController::class, 'infosearch'])->name('infosearch');
 Route::get('/productsearch', [App\Http\Controllers\SearchController::class, 'productsearch'])->name('productsearch');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'role'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -38,14 +37,20 @@ Route::middleware('auth')->group(function () {
     Route::put('/cart/{id}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
     Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
     Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'delete'])->name('cart.delete');
-    Route::get('check-out/{id}', [ App\Http\Controllers\ChekoutController::class,'view']);
+    Route::get('check-out/{id}', [ App\Http\Controllers\ChekoutController::class,'view'])->name('checkout');
+    Route::put('/checkout/update/{id}', [ App\Http\Controllers\ChekoutController::class,'update'])->name('checkout.update');
+    Route::get('direct-check-out/{id}', [ App\Http\Controllers\ChekoutController::class,'directview']);
+    Route::get('/history', [App\Http\Controllers\HistoryController::class, 'index'])->name('history.view');
+    Route::post('/history/add', [App\Http\Controllers\HistoryController::class, 'addToHistory'])->name('history.add');
 
     Route::get('/change-password', [App\Http\Controllers\ChangePasswordController::class, 'showChangePasswordForm'])->name('password.change');
     Route::post('/change-password', [App\Http\Controllers\ChangePasswordController::class, 'changePassword'])->name('password.update');
 });
 
-Route::get('/create', [App\Http\Controllers\Admin\UploadController::class, 'create'])->name('product.create');
-Route::post('/upload', [App\Http\Controllers\Admin\UploadController::class, 'store'])->name('store.product');
+Route::middleware(['auth','authadmin'])->group(function () {
+    Route::get('/create', [App\Http\Controllers\Admin\UploadController::class, 'create'])->name('product.create');
+    Route::post('/upload', [App\Http\Controllers\Admin\UploadController::class, 'store'])->name('store.product');
+});
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');

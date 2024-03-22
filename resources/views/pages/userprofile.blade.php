@@ -24,7 +24,7 @@
 </style>
 
 @section('content')
-    <div class="container" style="background-color: #fff; border: 1px solid #5F5B00; margin-top: 5rem; border-radius: 5px">
+    <div class="container" style="background-color: #fff; border: 1px solid #5F5B00; margin-top: 3rem; border-radius: 5px">
         <div class="d-flex mb-3">
             <a href="{{ '/home' }}" class="" style="margin-top: 1rem">
                 <img src="{{ url('/images/backarrow.svg') }}" alt="" width="30"></a>

@@ -24,11 +24,11 @@
 
 <body style="min-height: 100vh; display: flex; flex-direction: column">
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
-            style="box-shadow: 0px 0px 15px #00000047; padding-left: 5rem; padding-right: 5rem; padding-top: 10px; padding-bottom: 10px; z-index: 50;width: 100%;">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top"
+            style="background-color: #5F5B00; box-shadow: 0px 0px 15px #00000047; padding-left: 5rem; padding-right: 5rem; padding-top: 10px; padding-bottom: 10px; z-index: 50;width: 100%;">
             <div class="container d-flex justify-content-between">
                 <a class="navbar-brand d-flex align-items-center" href="#"><img
-                        src="{{ url('/images/nav-logo.png') }}" alt="logo" width="100"></a>
+                        src="{{ url('/images/nav-logo-wh.png') }}" alt="logo" width="100"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation"
@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="navbar-nav ms-auto" style="flex-direction: row; gap: 8px;">
                         <div class="d-flex align-items-center" style="margin-right: 1.3rem"><a
-                                href="{{ route('cart.view') }}"><img src="{{ url('/images/cart.svg') }}" alt=""
+                                href="{{ route('cart.view') }}"><img src="{{ url('/images/cart-w.svg') }}" alt="" fill='#fff'
                                     style="width: 27px; padding-right: 0px; padding-left: 0px" class=""></a></div>
 
 

@@ -23,7 +23,7 @@
 </head>
 
 <body style="min-height: 100vh; display: flex; flex-direction: column">
-    <div id="app" style="display: flex; flex-direction: column">
+    <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
             style="box-shadow: 0px 0px 15px #00000047; padding-left: 5rem; padding-right: 5rem; padding-top: 10px; padding-bottom: 10px; z-index: 50;width: 100%;">
             <div class="container d-flex justify-content-between">
@@ -63,10 +63,17 @@
                                     </li>
                                 @endif
                             @else
-                                <li class="nav-item">
-                                    <a class="nav-link " aria-current="page" href="#"
-                                        style="color: #5F5B00">Riwayat</a>
-                                </li>
+                                @if (Auth::user()->usertype == 'admin')
+                                    <li class="nav-item">
+                                        <a class="nav-link " aria-current="page" href="{{ route('product.create') }}"
+                                            style="color: #5F5B00">Admin</a>
+                                    </li>
+                                @else
+                                    <li class="nav-item">
+                                        <a class="nav-link " aria-current="page" href="{{ route('history.view') }}"
+                                            style="color: #5F5B00">Riwayat</a>
+                                    </li>
+                                @endif
                             @endguest
                         </ul>
                     </div>
@@ -89,8 +96,9 @@
                             @endif
                         @else
                             <div class="d-flex align-items-center" style="margin-right: 1.3rem"><a
-                                    href="{{ route('cart.view') }}"><img src="{{ url('/images/cart.svg') }}" alt=""
-                                        style="width: 27px; padding-right: 0px; padding-left: 0px" class=""></a></div>
+                                    href="{{ route('cart.view') }}"><img src="{{ url('/images/cart.svg') }}"
+                                        alt="" style="width: 27px; padding-right: 0px; padding-left: 0px"
+                                        class=""></a></div>
 
                             @if (Auth::user()->avatar)
                                 <a href="{{ route('profile') }}"><img src="{{ Auth::user()->avatar }}" alt="profile"
@@ -112,7 +120,7 @@
     </div>
     </nav>
 
-    <main class="" style="margin-bottom: 4rem">
+    <main class="" style="margin-bottom: 4rem; min-height: 70vh;">
         @yield('content')
     </main>
 

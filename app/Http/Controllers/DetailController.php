@@ -16,7 +16,7 @@ class DetailController extends Controller
     }
 
     public function showother($id)
-{
+    {
     // Ambil data produk yang sedang ditampilkan
     $product = Product::findOrFail($id);
 
@@ -24,7 +24,7 @@ class DetailController extends Controller
     $otherProducts = Product::where('id', '!=', $id)->limit(6)->get();
 
     return view('pages.productdetail', compact('product', 'otherProducts'));
-}
+    }
 
     public function informationdetail($id)
     {

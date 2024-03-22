@@ -120,7 +120,7 @@
                                         {{ substr($product->product_name, 0, 45) }}{{ strlen($product->product_name) > 50 ? '...' : '' }}
                                     </h5>
                                     <div class="row d-flex justify-content-between">
-                                        <p class="card-text" style="color: #00000090">Rp.
+                                        <p class="card-text" style="color: #000000">Rp.
                                             {{ number_format($product->harga, 0, ',', '.') }}</p>
                                     </div>
                                     <div class="d-flex justify-content-between">
