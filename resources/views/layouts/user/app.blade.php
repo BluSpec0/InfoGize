@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,12 +21,23 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
+<style>
+    .navbar {
+        transition: all 0.2s;
+    }
+
+    .navbar-scrolled {
+        background-color: #FFFFFF;
+        box-shadow: 0px 0px 15px #00000047;
+    }
+</style>
+
 <body style="min-height: 100vh; display: flex; flex-direction: column">
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
-            style="box-shadow: 0px 0px 15px #00000047; padding-left: 5rem; padding-right: 5rem; padding-top: 10px; padding-bottom: 10px; z-index: 50;width: 100%;">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-scrolled"
+            style="padding-left: 5rem; padding-right: 5rem; padding-top: 10px; padding-bottom: 10px; z-index: 50;width: 100%;">
             <div class="container d-flex justify-content-between">
-                <a class="navbar-brand d-flex align-items-center" href="#"><img
+                <a class="d-flex align-items-center" href="#"><img class="navbar-brand"
                         src="{{ url('/images/nav-logo.png') }}" alt="logo" width="100"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -65,6 +75,10 @@
                             @else
                                 @if (Auth::user()->usertype == 'admin')
                                     <li class="nav-item">
+                                        <a class="nav-link " aria-current="page" href="{{ route('history.view') }}"
+                                            style="color: #5F5B00">Riwayat</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link " aria-current="page" href="{{ route('product.create') }}"
                                             style="color: #5F5B00">Admin</a>
                                     </li>
@@ -81,7 +95,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal"
+                                    <a class="btn btn-primary btn-sm btn-login" type="button" data-bs-toggle="modal"
                                         data-bs-target="#login"
                                         style="background-color: #5F5B00; color: #FFFFFF; font-size: 13px; border-radius: 5px; border-color: #5F5B00">{{ __('Masuk') }}</a>
                                 </li>
@@ -98,17 +112,17 @@
                             <div class="d-flex align-items-center" style="margin-right: 1.3rem"><a
                                     href="{{ route('cart.view') }}"><img src="{{ url('/images/cart.svg') }}"
                                         alt="" style="width: 27px; padding-right: 0px; padding-left: 0px"
-                                        class=""></a></div>
+                                        class="cart"></a></div>
 
                             @if (Auth::user()->avatar)
                                 <a href="{{ route('profile') }}"><img src="{{ Auth::user()->avatar }}" alt="profile"
-                                        class="d-flex justify-content-center"
+                                        class="d-flex justify-content-center avatar"
                                         style="width: 40px; height: 40px; object-position: center; object-fit: cover; align-items: center;
                                 background-size: cover; background-position: center; border: 1px solid #5F5B00; border-radius: 5px"></a>
                                 <div class="mb-4">
                                 @else
                                     <a href="{{ route('profile') }}"><img src="{{ url('/images/defaultavatar.png') }}"
-                                            alt="profile" class="d-flex justify-content-center"
+                                            alt="profile" class="d-flex justify-content-center avatar"
                                             style="width: 40px; height: 40px; object-position: center; object-fit: cover; align-items: center;
                                 background-size: cover; background-position: center; border: 1px solid #5F5B00; border-radius: 5px"></a>
                                     <div class="mb-4">
@@ -117,63 +131,105 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </nav>
+        </nav>
 
-    <main class="" style="margin-bottom: 4rem; min-height: 70vh;">
-        @yield('content')
-    </main>
+        <script>
+            window.addEventListener('scroll', () => {
+                // Check if the current page is the home page or info page
+                const isHomePage = window.location.pathname === '/';
+                const isInfoPage = window.location.pathname === '/home';
 
-    <footer class="footer mt-auto py-5" style="background-color: #5F5B00; margin-top: auto">
-        <div class="container d-flex justify-content-center" style="opacity: 0.75">
-            <div class="row row-cols-1">
-                <div class="d-flex justify-content-center" style="margin-bottom: 2.5rem">
-                    <img src="{{ url('/images/footerlogo.png') }}" alt="" width="180">
-                </div>
+                if (isHomePage || isInfoPage) {
+                    const navLogo = document.querySelector('.navbar-brand');
+                    const navEl = document.querySelector('.navbar');
+                    const navLinks = document.querySelectorAll('.nav-link');
+                    const cartImg = document.querySelector('.cart');
+                    const avatarImg = document.querySelector('.avatar');
+                    const loginBtn = document.querySelector('.btn-login');
 
-                <div class="d-flex flex-row justify-content-center"
-                    style="font-size: 17px; flex-direction: row; gap: 2rem; text-transform: uppercase; margin-bottom: 2.5rem">
-                    <a class="nav-link " href="{{ Auth::check() ? route('home') : '/' }}"
-                        style="color: #FFFFFF">Beranda</a>
-                    <a class="nav-link " href="{{ route('informations') }}" style="color: #FFFFFF;">Informasi</a>
-                    <a class="nav-link " href="{{ route('products') }}" style="color: #FFFFFF;">Produk</a>
-                    <a class="nav-link " href="{{ Auth::check() ? url('/home#FAQ') : '/#FAQ' }}"
-                        style="color: #FFFFFF;">FAQ</a>
-                    <a class="nav-link " href="{{ Auth::check() ? url('/home#hubungikami') : '/#hubungikami' }}"
-                        style="color: #FFFFFF;">Hubungi Kami</a>
-                </div>
+                    if (window.scrollY >= 10) {
+                        navEl.classList.add('navbar-scrolled');
+                        navLogo.src = "{{ url('/images/nav-logo.png') }}";
+                        navLinks.forEach(link => {
+                            link.style.color = '#5F5B00';
+                        });
+                        cartImg.src = "{{ url('/images/cart.svg') }}";
+                        avatarImg.style.borderColor = '#5F5B00';
+                        loginBtn.style.borderColor = '#5F5B00';
+                        loginBtn.style.color = '#5F5B00';
+                    } else {
+                        navEl.classList.remove('navbar-scrolled');
+                        navLogo.src = "{{ url('/images/nav-logo-wh.png') }}";
+                        navLinks.forEach(link => {
+                            link.style.color = '#FFF';
+                        });
+                        cartImg.src = "{{ url('/images/cart-w.svg') }}";
+                        avatarImg.style.borderColor = '#FFFFFF';
+                        loginBtn.style.borderColor = '#FFFFFF';
+                        loginBtn.style.color = '#FFF';
+                    }
+                }
+            });
+        </script>
 
-                <div class="d-flex justify-content-center mb-3">
-                    <h4 style="color: #FFFFFF; font-weight: 400">Tersedia Produk</h4>
-                </div>
 
-                <div class="d-flex justify-content-center align-items-center gap-5" style="margin-bottom: 3rem">
-                    <img src="{{ url('/images/footer1.png') }}" alt="" height="40">
-                    <img src="{{ url('/images/footer2.png') }}" alt="" height="35">
-                    <img src="{{ url('/images/footer3.png') }}" alt="" height="35">
-                    <img src="{{ url('/images/footer4.png') }}" alt="" height="20">
-                </div>
+        <main class="" style="margin-bottom: 4rem; min-height: 70vh;">
+            @yield('content')
+        </main>
 
-                <div class="d-flex justify-content-evenly gap-4">
-                    <div class="d-flex flex-row gap-1 align-items-center">
-                        <img src="{{ url('/images/instagram.svg') }}" alt="" width="20"
-                            style="vertical-align: middle;">
-                        <p style="color: #FFFFFF; margin-bottom: 0; vertical-align: middle;">InfoGize.official.id</p>
+        <footer class="footer mt-auto py-5" style="background-color: #5F5B00; margin-top: auto">
+            <div class="container d-flex justify-content-center" style="opacity: 0.75">
+                <div class="row row-cols-1">
+                    <div class="d-flex justify-content-center" style="margin-bottom: 2.5rem">
+                        <img src="{{ url('/images/footerlogo.png') }}" alt="" width="180">
                     </div>
 
-                    <div>
-                        <span style="color: #FFFFFF; margin-bottom: 0; vertical-align: middle;">&copy;Copyright 2024
-                            InfoGize Indonesia</span>
+                    <div class="d-flex flex-row justify-content-center"
+                        style="font-size: 17px; flex-direction: row; gap: 2rem; text-transform: uppercase; margin-bottom: 2.5rem">
+                        <a class="nav-link " href="{{ Auth::check() ? route('home') : '/' }}"
+                            style="color: #FFFFFF">Beranda</a>
+                        <a class="nav-link " href="{{ route('informations') }}"
+                            style="color: #FFFFFF;">Informasi</a>
+                        <a class="nav-link " href="{{ route('products') }}" style="color: #FFFFFF;">Produk</a>
+                        <a class="nav-link " href="{{ Auth::check() ? url('/home#FAQ') : '/#FAQ' }}"
+                            style="color: #FFFFFF;">FAQ</a>
+                        <a class="nav-link " href="{{ Auth::check() ? url('/home#hubungikami') : '/#hubungikami' }}"
+                            style="color: #FFFFFF;">Hubungi Kami</a>
                     </div>
 
-                    <div>
-                        <p style="color: #FFFFFF; margin-bottom: 0; vertical-align: middle;">InfoGize@gmail.com</p>
+                    <div class="d-flex justify-content-center mb-3">
+                        <h4 style="color: #FFFFFF; font-weight: 400">Tersedia Produk</h4>
                     </div>
+
+                    <div class="d-flex justify-content-center align-items-center gap-5" style="margin-bottom: 3rem">
+                        <img src="{{ url('/images/footer1.png') }}" alt="" height="40">
+                        <img src="{{ url('/images/footer2.png') }}" alt="" height="35">
+                        <img src="{{ url('/images/footer3.png') }}" alt="" height="35">
+                        <img src="{{ url('/images/footer4.png') }}" alt="" height="20">
+                    </div>
+
+                    <div class="d-flex justify-content-evenly gap-4">
+                        <div class="d-flex flex-row gap-1 align-items-center">
+                            <img src="{{ url('/images/instagram.svg') }}" alt="" width="20"
+                                style="vertical-align: middle;">
+                            <p style="color: #FFFFFF; margin-bottom: 0; vertical-align: middle;">InfoGize.official.id
+                            </p>
+                        </div>
+
+                        <div>
+                            <span style="color: #FFFFFF; margin-bottom: 0; vertical-align: middle;">&copy;Copyright
+                                2024
+                                InfoGize Indonesia</span>
+                        </div>
+
+                        <div>
+                            <p style="color: #FFFFFF; margin-bottom: 0; vertical-align: middle;">InfoGize@gmail.com</p>
+                        </div>
+                    </div>
+
                 </div>
-
             </div>
-        </div>
-    </footer>
+        </footer>
 
 </body>
 

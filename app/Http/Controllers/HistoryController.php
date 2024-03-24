@@ -14,10 +14,10 @@ class HistoryController extends Controller
     public function index ()
     {
         $user_id = Auth::id();
-        $historis = History::where('user_id', $user_id)->with('product')->get();
+        $historis = History::where('user_id', $user_id)->with('product')->orderBy('created_at', 'desc')->get();
 
-    return view('pages.history', ['histori' => $historis]);
-    } 
+        return view('pages.history', ['histori' => $historis]);
+    }
 
     public function addToHistory(Request $request)
     {
@@ -45,10 +45,11 @@ class HistoryController extends Controller
         // Cek apakah pengguna terautentikasi
         if (Auth::check()) {
             $historyItem->user_id = auth()->user()->id;
+            $historyItem->address = auth()->user()->address;
         }
         
         $historyItem->save();
 
-        return redirect()->route('history.view')->with('success', 'Pembelian berhasil.');
+        return redirect()->route('payment.view')->with('success', 'Pembelian berhasil.');
     }
 }

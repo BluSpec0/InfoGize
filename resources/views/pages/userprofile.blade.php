@@ -98,23 +98,24 @@
                             type="button" role="tab" aria-controls="nav-lainnya" aria-selected="false">Lainnya</button>
                     </div>
                 </nav>
-                <div class="tab-content" id="nav-tabContent"
+                <div class="tab-content mb-3" id="nav-tabContent"
                     style="width: 100%; border-right: 1px solid #5F5B00; border-left: 1px solid #5F5B00; border-bottom: 1px solid #5F5B00; padding: 1rem; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px">
                     <div class="tab-pane fade show active" id="nav-biodata" role="tabpanel"
                         aria-labelledby="nav-biodata-tab">
                         <div class="mb-5">
                             <h1 style="color: #5F5B00; font-size: 25px; font-weight: 400" class="mb-4">Biodata Diri</h1>
-                            <p style="font-size: 17px">{{ Auth::user()->fullname }}</p>
+                            <p style="font-size: 17px">{{ Auth::user()->fullname ?: 'Masukan Nama Lengkap' }}</p>
                             <hr style="color: #5F5B00;">
-                            <p style="font-size: 17px">{{ Auth::user()->birthday }}</p>
+                            <p style="font-size: 17px">{{ Auth::user()->birthday ?: 'Masukan Tanggal Lahir' }}</p>
                             <hr style="color: #5F5B00;">
-                            <p style="font-size: 17px">{{ Auth::user()->gender }}</p>
+                            <p style="font-size: 17px">{{ Auth::user()->gender ?: 'Pilih Gender' }}</p>
                         </div>
 
+
                         <h1 style="color: #5F5B00; font-size: 25px; font-weight: 400" class="mb-4">Kontak</h1>
-                        <p style="font-size: 17px">{{ Auth::user()->email }}</p>
+                        <p style="font-size: 17px">{{ Auth::user()->email ?: 'Masukan Email' }}</p>
                         <hr style="color: #5F5B00; width: 100%;">
-                        <p style="font-size: 17px">{{ Auth::user()->nohp }}</p>
+                        <p style="font-size: 17px">{{ Auth::user()->nohp ?: 'Masukan No.Ponsel' }}</p>
                         <div class="d-flex justify-content-end">
                             <a class="btn btn-primary btn-md " type="button" data-bs-toggle="modal"
                                 data-bs-target="#biodata"
@@ -124,12 +125,18 @@
                     <div class="tab-pane fade" id="nav-alamat" role="tabpanel" aria-labelledby="nav-alamat-tab">
                         <div style="border: 1px solid #5F5B00; border-radius: 10px; padding: 1rem" class="mb-4">
                             <div class="d-flex gap-1" style="font-size: 17px;">
-                                <p style="margin-bottom: 0px">{{ Auth::user()->fullname }}</p>
-                                <p style="margin-bottom: 0px">(
-                                    +62{{ substr(Auth::user()->nohp, 0, 0) }}<span>*****</span>{{ substr(Auth::user()->nohp, -4) }})
+                                <p style="margin-bottom: 0px">{{ Auth::user()->fullname ?: 'Nama Belum Di Masukan' }}</p>
+                                <p style="margin-bottom: 0px">
+                                    (
+                                    @if (Auth::user()->nohp)
+                                        {{ substr(Auth::user()->nohp, 0, 3) }}<span>*****</span>{{ substr(Auth::user()->nohp, -3) }}
+                                    @else
+                                        Nomor Belum Dimasukkan
+                                    @endif
+                                    )
                                 </p>
                             </div>
-                            <p style="margin-bottom: 0px">{{ Auth::user()->address }}</p>
+                            <p style="margin-bottom: 0px">{{ Auth::user()->address ?: 'Alamat Belum Di Masukan' }}</p>
                         </div>
                         <div class="d-flex justify-content-end">
                             <a class="btn btn-primary btn-md " type="button" data-bs-toggle="modal"
@@ -366,54 +373,79 @@
         </form>
     </section>
 
-    <section id="ChangePW">
-        <form action="{{ route('profile.update', $user) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="modal fade" id="password" data-bs-backdrop="static" data-bs-keyboard="false"
-                tabindex="-1" aria-labelledby="password" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel"
-                                style="color: #5F5B00; font-size: 20px; font-weight: 400;">Ubah Data</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div style="padding: 1rem">
-
-                            <div class="card-body">
-                                <form method="POST" action="{{ route('password.update') }}">
-                                    @csrf
-
-                                    <div class="form-group">
-                                        <label for="current_password">{{ __('Current Password') }}</label>
-                                        <input id="current_password" type="password" class="form-control"
-                                            name="current_password">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="new_password">{{ __('New Password') }}</label>
-                                        <input id="new_password" type="password" class="form-control"
-                                            name="new_password">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label
-                                            for="new_password_confirmation">{{ __('Confirm New Password') }}</label>
-                                        <input id="new_password_confirmation" type="password" class="form-control"
-                                            name="new_password_confirmation">
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Change Password') }}
-                                    </button>
-                                </form>
+    <section id="forget">
+        <div class="modal fade" id="password" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="password" aria-hidden="true">
+            <div class="modal-dialog modal-lg ">
+                <div class="modal-content">
+                    <div style="padding: 3rem">
+                        <div class="">
+                            <div class="" style="">
+                                <a class="" style="color: #5F5B00;" data-bs-dismiss="modal"><img
+                                        src="{{ url('/images/backarrow.svg') }}" alt="" width="30"></a>
                             </div>
+                        </div>
+
+                        <div class="row justify-content-center mb-1"
+                            style="color: #5F5B00; font-size: 30px; font-weight: 400;">
+                            {{ __('Atur Ulang Sandi') }}</div>
+                        <div class="row justify-content-center mb-4">
+                            <div
+                                style="color: #5F5B00; font-size: 15px; font-weight: 400; opacity: 0.5; max-width: 50%; text-align: center">
+                                {{ __('Silahkan Masukan Email Akun Anda Untuk Melanjutkan.') }}
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+
+                            <form method="POST" action="{{ route('password.email') }}">
+                                @csrf
+
+                                <div class="row mb-3 justify-content-center">
+
+                                    <div class="col-md-6">
+                                        <input id="email" type="email" style="box-shadow: 0px 0px 2px #5F5B00;"
+                                            placeholder="Masukan E-mail"
+                                            class="form-control @error('email') is-invalid @enderror" name="email"
+                                            value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                        <style>
+                                            #email::placeholder {
+                                                color: #5F5B00;
+                                                text-align: center;
+                                                opacity: 0.3;
+                                            }
+
+                                            #email::first-line {
+                                                color: #5F5B00;
+                                            }
+                                        </style>
+
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-5">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primar"
+                                            style="background-color: #5F5B00; color: #FFFFFF; font-size: 15px; border-radius: 5px">
+                                            {{ __('Kirim email reset password') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </section>

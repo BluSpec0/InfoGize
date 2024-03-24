@@ -34,58 +34,17 @@ class ChekoutController extends Controller
         return view('pages.checkoutdirect', compact('product', 'user'));
     }
     public function update(Request $request)
-{
-    // Dapatkan produk yang sedang diubah
-    $productId = $request->session()->get('product_id'); // Misalnya, jika Anda menyimpannya di sesi
-
-    // Pastikan produk ditemukan
-    $product = Product::find($productId);
-    if (!$product) {
-        return redirect()->back()->with('error', 'Produk tidak ditemukan.');
-    }
-    
-    // Dapatkan informasi pengguna yang sedang login
-    $user = Auth::user();
-
-    // Perbarui alamat pengguna jika ada yang diisi
-    if (!empty($request->address)) {
-        $user->address = $request->address;
-    }
-
-    // Simpan perubahan informasi pengguna
-    if ($user->save()) {
-        // Kembalikan pengguna ke halaman produk sesuai ID produk yang sedang diubah
-        return redirect()->route('checkout', ['id' => $productId])->with('success', 'Alamat pengiriman berhasil diperbarui.');
-    } else {
-        // Jika gagal menyimpan, kembalikan dengan pesan error
-        return redirect()->back()->with('error', 'Gagal memperbarui alamat pengiriman.');
-    }
-}
-    // public function update(Request $request, $id)
-    // {
-    //     // Dapatkan produk yang sedang diubah
-    //     $product = Product::find($id);
-
-    //     // Pastikan produk ditemukan
-    //     if (!$product) {
-    //         return redirect()->back()->with('error', 'Produk tidak ditemukan.');
-    //     }
+    {
         
-    //     // Dapatkan informasi pengguna yang sedang login berdasarkan id pengguna
-    //     $user = User::find(Auth::user()->id);
-
-    //     // Perbarui alamat pengguna jika ada yang diisi
-    //     if (!empty($request->address)) {
-    //         $user->address = $request->address;
-    //     }
-
-    //     // Simpan perubahan informasi pengguna
-    //     if ($user->save()) {
-    //         // Kembalikan pengguna ke halaman produk sesuai ID produk yang sedang diubah
-    //         return redirect()->route('product.show', ['id' => $id])->with('success', 'Alamat pengiriman berhasil diperbarui.');
-    //     } else {
-    //         // Jika gagal menyimpan, kembalikan dengan pesan error
-    //         return redirect()->back()->with('error', 'Gagal memperbarui alamat pengiriman.');
-    //     }
-    // }
+        $user = auth()->user();
+    
+        
+        if ($request->filled('address')) {
+            $user->address = $request->input('address');
+            $user->save();
+            return redirect()->back()->with('success', 'Alamat pengiriman berhasil diperbarui.');
+        } else {
+            return redirect()->back()->with('error', 'Alamat pengiriman tidak boleh kosong.');
+        }
+    }
 }

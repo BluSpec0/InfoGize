@@ -28,4 +28,14 @@ public function productsearch(Request $request)
     return view('pages.products', compact('products'));
 }
 
+public function adminpsearch(Request $request)
+{
+    $query = $request->input('query');
+    $products = Product::where('product_name', 'ILIKE', "%$query%")
+                    ->orWhere('nama', 'ILIKE', "%$query%")      
+                    ->orWhere('kategori', 'ILIKE', "%$query%")->get();
+
+    return view('pages.admin.upload', compact('products'));
+}
+
 }

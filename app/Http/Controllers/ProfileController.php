@@ -26,13 +26,16 @@ class ProfileController extends Controller
 	{
     	 $this->validate($request, [
             'password'  => 'confirmed',
-			// 		'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+			'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);		
 
 		// 	$image = $request->file('avatar');
     //     $image_url = CloudinaryStorage::uploadAvatar( $image->getRealPath(), $image->getClientOriginalName());
 
-    	$user = User::where('id', Auth::user()->id)->first();
+		$user = User::where('id', Auth::user()->id)->first();
+
+		$image = $request->file('avatar');
+        $image_url = $image ? CloudinaryStorage::replaceAvatar($user->image_url, $image->getRealPath(), $image->getClientOriginalName()) : $user->image_url;
 
     	if (!empty($request->name)) {
         $user->name = $request->name;
@@ -52,15 +55,9 @@ class ProfileController extends Controller
 		if (!empty($request->gender)) {
      	$user->gender = $request->gender;
    	 	}
-	// 	// if (!empty($request->gender)) {
-    //     // $user->gender = $request->gender;
-	// 	if (!empty($request->avatar)) {
-    //     $user->avatar = $image_url;
-   	// 	}
-    	// if(!empty($request->password))
-    	// {
-    	// 	$user->password = Hash::make($request->password);
-    	// }
+		if (!empty($request->avatar)) {
+        $user->avatar = $image_url;
+   		}
     	
     	$user->update();
 
@@ -83,5 +80,5 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
-    }
+    }	
 }

@@ -12,7 +12,7 @@ class CartController extends Controller
     public function view()
     {
     $user_id = Auth::id();
-    $carts = Cart::where('user_id', $user_id)->with('product')->get();
+    $carts = Cart::where('user_id', $user_id)->with('product')->orderBy('created_at', 'desc')->get();
 
     return view('pages.cart', ['cart' => $carts]);
     }
@@ -39,7 +39,6 @@ class CartController extends Controller
 
     return redirect()->route('cart.view')->with('error', 'Item dalam keranjang tidak ditemukan.');
 }
-
 
     public function delete($id)
     {

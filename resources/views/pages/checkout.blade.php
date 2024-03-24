@@ -75,11 +75,10 @@
                                 <p style="margin-bottom: 3px">Total</p>
                             </div>
                             <div style="width: fit-content">
-                                <p style="margin-bottom: 3px">Rp. {{ number_format($product->harga, 0, ',', '.') }},00</p>
+                                <p id="totalHarga" style="margin-bottom: 3px"></p>
                                 <p style="margin-bottom: 3px">Rp. 5.000,00</p>
                                 <p style="margin-bottom: 3px">Rp. 2.000,00</p>
-                                <p style="margin-bottom: 3px">Rp.
-                                    {{ number_format($product->harga + 7000, 0, ',', '.') }},00</p>
+                                <p id="totalHargaPPN" style="margin-bottom: 3px"></p>
                             </div>
                         </div>
                     </div>
@@ -91,8 +90,26 @@
                             style="width: 100%">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input id="jumlah" type="hidden" class="form-control" name="jumlah" value="1"
-                                autocomplete="jumlah" autofocus min="1">
+                            <input id="jumlah" type="number" class="form-control" name="jumlah" value="1"
+                                autocomplete="jumlah" autofocus min="1" onchange="hitungTotal()">
+                            <script>
+                                function hitungTotal() {
+                                    var hargaProduk = parseFloat("{{ $product->harga }}");
+                                    var jumlah = parseFloat(document.getElementById("jumlah").value);
+
+                                    if (jumlah <= 0) {
+                                        jumlah = 1;
+                                        document.getElementById("jumlah").value = 1;
+                                    }
+
+                                    var totalHarga = hargaProduk * jumlah;
+
+                                    var totalHargaPPN = hargaProduk * jumlah + 5000 + 2000;
+
+                                    document.getElementById("totalHarga").innerText = "Rp. " + totalHarga.toLocaleString('id-ID') + ",00";
+                                    document.getElementById("totalHargaPPN").innerText = "Rp. " + totalHargaPPN.toLocaleString('id-ID') + ",00";
+                                }
+                            </script>
                             <button type="submit" class="btn btn-primary btn-lg col-6 d-flex justify-content-center"
                                 style="color: #5F5B00; background-color: #ffffff; border-color: #5F5B00">
                                 Bayar

@@ -38,18 +38,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
     Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'delete'])->name('cart.delete');
     Route::get('check-out/{id}', [ App\Http\Controllers\ChekoutController::class,'view'])->name('checkout');
-    Route::put('/checkout/update/{id}', [ App\Http\Controllers\ChekoutController::class,'update'])->name('checkout.update');
+    Route::put('/checkout/update', [ App\Http\Controllers\ChekoutController::class,'update'])->name('checkout.update');
     Route::get('direct-check-out/{id}', [ App\Http\Controllers\ChekoutController::class,'directview']);
     Route::get('/history', [App\Http\Controllers\HistoryController::class, 'index'])->name('history.view');
     Route::post('/history/add', [App\Http\Controllers\HistoryController::class, 'addToHistory'])->name('history.add');
-
-    Route::get('/change-password', [App\Http\Controllers\ChangePasswordController::class, 'showChangePasswordForm'])->name('password.change');
-    Route::post('/change-password', [App\Http\Controllers\ChangePasswordController::class, 'changePassword'])->name('password.update');
+    Route::get('/payment/{id}', [App\Http\Controllers\PaymentController::class, 'index'])->name('payment.view');
 });
 
 Route::middleware(['auth','authadmin'])->group(function () {
     Route::get('/create', [App\Http\Controllers\Admin\UploadController::class, 'create'])->name('product.create');
     Route::post('/upload', [App\Http\Controllers\Admin\UploadController::class, 'store'])->name('store.product');
+    Route::get('/adminpsearch', [App\Http\Controllers\SearchController::class, 'adminpsearch'])->name('adminpsearch');
+    Route::put('/adminupdate/{id}', [App\Http\Controllers\Admin\UploadController::class, 'update'])->name('adminp.update');
 });
 
 Route::get('/forgot-password', function () {
