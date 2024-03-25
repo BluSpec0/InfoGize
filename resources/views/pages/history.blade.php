@@ -38,9 +38,9 @@
                                     <div style="font-size: 17px">
                                         <p style="margin: 0%">Total Belanja</p>
                                         <p style="margin: 0%">Rp.
-                                            {{ number_format($item->product->harga * $item->jumlah, 0, ',', '.') }}</p>
+                                            {{ number_format($item->product->harga * $item->jumlah + 7000, 0, ',', '.') }}</p>
                                     </div>
-                                    <a href="" class="btn btn-primary align-items-center"
+                                    <a href="{{ url('payment') }}/{{ $item->id }}" class="btn btn-primary align-items-center"
                                         style="color: #fff; background-color: #5F5B00; border-color: #5F5B00; height: fit-content;">
                                         Detail Pesanan</a>
                                 </div>

@@ -21,13 +21,15 @@ class HistoryController extends Controller
 
     public function addToHistory(Request $request)
 {
+    $user = Auth::user();
     $product = Product::find($request->product_id);
 
     if (!$product) {
         return redirect()->back()->with('error', 'Produk tidak ditemukan.');
     }
 
-    $cart = Cart::find($request->cart_id);
+    $cartItems = Cart::where('user_id', $user->id)->get();
+    $cartItems->product_id = $product->id;
 
     $jumlah = $request->input('jumlah', 1);
 
@@ -35,7 +37,7 @@ class HistoryController extends Controller
     $historyItem->product_id = $product->id;
     
     if ($request->has('cart_id')) {
-        $historyItem->cart_id = $cart->id;
+        $historyItem->cart_id = $cartItems->id;
     } else {
         $historyItem->cart_id = null; // Alternatively, if there is no input, set cart_id to null
     }   
@@ -50,8 +52,14 @@ class HistoryController extends Controller
     
     $historyItem->save();
 
+    // Delete the cart item
+    foreach ($cartItems as $cartItem) {
+            $cartItem->delete();
+        }
+
     // Pass the required parameter to the payment view route
     return redirect()->route('payment.view', ['id' => $historyItem->id])->with('success', 'Pembelian berhasil.');
 }
+
 
 }

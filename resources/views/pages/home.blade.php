@@ -14,20 +14,18 @@
             <div class="carousel-inner" draggable="true">
                 <div class="carousel-item active" data-interval="3000" data-ride="true">
                     <img src="/images/image-1.png" class="d-block w-100" alt="..."
-                        style="height: 100vh; object-fit: cover; filter: brightness(0.65);">
+                        style="height: 100vh; object-fit: cover; filter: brightness(0.5);">
                     <div class="carousel-caption d-none d-md-block mb-4">
-                        <h5 class="display-4" style="font-weight: 400">Terjamin</h5>
+                        <h5 class="display-4" style="font-weight: 400">Selamat Datang</h5>
                         <p class=""
                             style="font-size: 20px; font-weight: 300; word-spacing: 1.5px; letter-spacing: 1px">
-                            Informasi,
-                            dan
-                            Transaksi Terjamin
+                            Website Penyedia SpareParts Motor
                         </p>
                     </div>
                 </div>
                 <div class="carousel-item" data-interval="3000" data-ride="true">
                     <img src="/images/image-2.jpg" class="d-block w-100" alt="..."
-                        style="height: 100vh; object-fit: cover; filter: brightness(0.6)">
+                        style="height: 100vh; object-fit: cover; filter: brightness(0.5)">
                     <div class="carousel-caption d-none d-md-block mb-4">
                         <h5 class="display-4" style="font-weight: 400">Terjamin</h5>
                         <p class=""
@@ -40,14 +38,12 @@
                 </div>
                 <div class="carousel-item" data-interval="3000" data-ride="true">
                     <img src="/images/image-3.jpg" class="d-block w-100" alt="..."
-                        style="height: 100vh; object-fit: cover; filter: brightness(0.65)">
+                        style="height: 100vh; object-fit: cover; filter: brightness(0.5)">
                     <div class="carousel-caption d-none d-md-block mb-4">
-                        <h5 class="display-4" style="font-weight: 400">Terjamin</h5>
+                        <h5 class="display-4" style="font-weight: 400">Pasti OEM</h5>
                         <p class=""
                             style="font-size: 20px; font-weight: 300; word-spacing: 1.5px; letter-spacing: 1px">
-                            Informasi,
-                            dan
-                            Transaksi Terjamin
+                            SpareParts Tejamin Original Pabrik
                         </p>
                     </div>
                 </div>

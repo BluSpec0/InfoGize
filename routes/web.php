@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/history/add', [App\Http\Controllers\HistoryController::class, 'addToHistory'])->name('history.add');
     Route::get('/payment/{id}', [App\Http\Controllers\PaymentController::class, 'index'])->name('payment.view');
     Route::get('detailcart/{id}', [App\Http\Controllers\DetailCartController::class, 'detailcart'])->name('detailcart');
+    Route::post('detailcart/{id}', [App\Http\Controllers\DetailCartController::class, 'processPayment'])->name('processPayment');
 });
 
 Route::middleware(['auth','authadmin'])->group(function () {

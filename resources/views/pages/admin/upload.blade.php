@@ -37,8 +37,8 @@
                                 type="button" role="tab" aria-controls="nav-alamat"
                                 aria-selected="false">Pembayaran</button>
                             <button class="nav-link" id="nav-lainnya-tab" data-bs-toggle="tab" data-bs-target="#nav-lainnya"
-                                type="button" role="tab" aria-controls="nav-lainnya"
-                                aria-selected="false">Lainnya</button>
+                                type="button" role="tab" aria-controls="nav-lainnya" aria-selected="false">Hubungi
+                                Kami</button>
                         </div>
                     </nav>
                     <div class="tab-content mb-3" id="nav-tabContent"
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <table class="table">
+                                    <table class="table table-bordered">
                                         <thead class="table-dark">
                                             <tr>
                                                 <th scope="col">Nama Produk</th>
@@ -108,6 +108,41 @@
                                                     <td>Rp. {{ number_format($product->harga, 0, ',', '.') }}</td>
                                                     <td>{{ $product->lokasiparts }}</td>
                                                     <td>{{ $product->stok }}</td>
+                                                    <td class="d-flex justify-content-center">
+                                                        <div class="d-flex gap-2 justify-content-center">
+                                                            <a class="btn btn-success btn-md mb-3" type="button"
+                                                                href="{{ url('editproduct') }}/{{ $product->id }}"
+                                                                style="color: #FFFFFF; font-size: 13px; border-radius: 5px;">{{ __('Ubah') }}</a>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-alamat" role="tabpanel" aria-labelledby="nav-alamat-tab">
+                            <div style="border: 1px solid #5F5B00; border-radius: 10px; padding: 1rem" class="mb-4">
+                                <div>
+                                    <table class="table table-bordered">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th scope="col">Nama Produk</th>
+                                                <th scope="col">Kategori</th>
+                                                <th scope="col">Harga</th>
+                                                <th scope="col">Lokasi</th>
+                                                <th scope="col">Stok</th>
+                                                <th scope="col" class="d-flex justify-content-center">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($historis as $product)
+                                                <tr>
+                                                    <td>{{ $product->product_name }}</td>
+                                                    <td>Rp. {{ number_format($product->harga, 0, ',', '.') }}</td>
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <a class="btn btn-success btn-md mb-3" type="button"
@@ -125,74 +160,41 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-alamat" role="tabpanel" aria-labelledby="nav-alamat-tab">
-                            <div style="border: 1px solid #5F5B00; border-radius: 10px; padding: 1rem" class="mb-4">
-                                <div class="d-flex gap-1" style="font-size: 17px;">
-                                    <p style="margin-bottom: 0px">{{ Auth::user()->fullname ?: 'Nama Belum Di Masukan' }}
-                                    </p>
-                                    <p style="margin-bottom: 0px">
-                                        (
-                                        @if (Auth::user()->nohp)
-                                            {{ substr(Auth::user()->nohp, 0, 3) }}<span>*****</span>{{ substr(Auth::user()->nohp, -3) }}
-                                        @else
-                                            Nomor Belum Dimasukkan
-                                        @endif
-                                        )
-                                    </p>
-                                </div>
-                                <p style="margin-bottom: 0px">{{ Auth::user()->address ?: 'Alamat Belum Di Masukan' }}</p>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <a class="btn btn-primary btn-md " type="button" data-bs-toggle="modal"
-                                    data-bs-target="#alamat"
-                                    style="background-color: #5F5B00; color: #FFFFFF; font-size: 13px; border-radius: 5px; border-color: #5F5B00">{{ __('Ubah Alamat') }}</a>
-                            </div>
-                        </div>
                         <div class="tab-pane fade" id="nav-lainnya" role="tabpanel" aria-labelledby="nav-lainnya-tab">
-                            <h1 style="color: #000000; font-size: 25px; font-weight: 400" class="mb-4">Pusat Bantuan
-                            </h1>
-                            <p style="font-size: 17px">Selamat datang di Pusat Bantuan kami untuk Aplikasi E-commerce! Kami
-                                berkomitmen untuk memberikan
-                                pengalaman belanja online yang mulus dan menyenangkan bagi semua pengguna kami. Pusat
-                                Bantuan
-                                ini dirancang untuk membantu Anda memahami dan menggunakan aplikasi e-commerce kami secara
-                                efisien.
-                            </p>
-                            <p style="font-size: 17px">Apa yang dapat Anda temukan di Pusat Bantuan kami:
-                            </p>
-                            <ul style="font-size: 17px">
-                                <li>Panduan Penggunaan: Dapatkan panduan langkah demi langkah tentang cara menggunakan
-                                    fitur-fitur utama aplikasi kami. Mulai dari membuat akun, menelusuri produk, hingga
-                                    menyelesaikan pembayaran, kami memberikan petunjuk jelas untuk setiap langkahnya.
-                                </li>
-                                <li>Troubleshooting: Jika Anda mengalami masalah teknis atau menghadapi kesulitan saat
-                                    menggunakan aplikasi, temukan solusi cepat dan mudah di bagian troubleshooting kami.
-                                    Kami
-                                    menyediakan jawaban untuk pertanyaan umum dan solusi untuk masalah umum.
-                                </li>
-                                <li>FAQ (Pertanyaan yang Sering Diajukan): Jelajahi daftar pertanyaan yang sering diajukan
-                                    oleh
-                                    pengguna lain dan temukan jawaban yang Anda butuhkan. Kami terus memperbarui FAQ kami
-                                    agar
-                                    mencakup pertanyaan terbaru dari pengguna kami.
-                                </li>
-                                <li>Kontak Dukungan Pelanggan: Jika Anda memerlukan bantuan lebih lanjut atau memiliki
-                                    pertanyaan khusus, tim dukungan pelanggan kami siap membantu. Temukan informasi kontak
-                                    kami
-                                    di bagian ini.
-                                </li>
-                                <li>Pembaruan Aplikasi: Dapatkan informasi terbaru tentang pembaruan aplikasi, peningkatan
-                                    fitur, dan perbaikan bug terbaru. Kami selalu berusaha untuk meningkatkan pengalaman
-                                    pengguna, dan pembaruan terbaru akan selalu disertakan di Pusat Bantuan kami.
-                                </li>
-                            </ul>
-                            <p style="font-size: 17px">Terima kasih telah memilih aplikasi e-commerce kami. Kami berharap
-                                Pusat
-                                Bantuan ini dapat membantu Anda menikmati pengalaman belanja online yang lebih baik dan
-                                lebih
-                                lancar. Jangan ragu untuk mencari bantuan tambahan atau memberikan umpan balik agar kami
-                                dapat
-                                terus meningkatkan layanan kami.</p>
+                            <div style="border: 1px solid #5F5B00; border-radius: 10px; padding: 1rem" class="mb-4">
+                                <div>
+                                    <table class="table table-bordered">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th scope="col">Nama Produk</th>
+                                                <th scope="col">Kategori</th>
+                                                <th scope="col">Harga</th>
+                                                <th scope="col">Lokasi</th>
+                                                <th scope="col">Stok</th>
+                                                <th scope="col" class="d-flex justify-content-center">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($historis as $product)
+                                                <tr>
+                                                    <td>{{ $product->product_name }}</td>
+                                                    <td>Rp. {{ number_format($product->harga, 0, ',', '.') }}</td>
+                                                    <td>
+                                                        <div class="d-flex gap-2">
+                                                            <a class="btn btn-success btn-md mb-3" type="button"
+                                                                href="{{ url('editproduct') }}/{{ $product->id }}"
+                                                                style="color: #FFFFFF; font-size: 13px; border-radius: 5px;">{{ __('Ubah') }}</a>
+                                                            <a class="btn btn-danger btn-md mb-3" type="button"
+                                                                data-bs-toggle="modal" data-bs-target="#biodata"
+                                                                style="color: #FFFFFF; font-size: 13px; border-radius: 5px;">{{ __('Hapus') }}</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

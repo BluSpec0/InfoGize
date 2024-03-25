@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\product; 
 use App\Models\Cart;
+use App\Models\History;
 use Illuminate\Support\Facades\Auth;
 
 class DetailCartController extends Controller
@@ -19,26 +20,19 @@ class DetailCartController extends Controller
         return view('pages.detailcart', compact('product', 'user', 'cart'));
     }
 
-    public function processPayment()
+    public function processPayment(Request $request)
     {
-        
         $user = Auth::user();
+        $product = Product::find($request->product_id);
 
         $cartItems = Cart::where('user_id', $user->id)->get();
+        $cartItems->product_id = $product->id;
 
         foreach ($cartItems as $cartItem) {
-            History::create([
-                'user_id' => $cartItem->user_id,
-                'product_id' => $cartItem->product_id,
-                'quantity' => $cartItem->quantity,
-                'total_price' => $cartItem->product->price * $cartItem->quantity,
-                
-            ]);
-
             $cartItem->delete();
         }
         
-        return redirect()->route('history.index')->with('success', 'Payment processed successfully. Items moved to history.');
+        return redirect()->route('payment.view', ['id' => $cartItems->id])->with('success', 'Pembelian berhasil.');
     }
 
 }

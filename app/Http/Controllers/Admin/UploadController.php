@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\CloudinaryStorage;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\User;
+use App\Models\History;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 
@@ -19,7 +22,11 @@ class UploadController extends Controller
     public function create()
     {
         $products = Product::orderBy('created_at', 'desc')->get();
-        return view('pages.admin.upload', compact('products'));
+
+        $user_id = Auth::id();
+        $historis = History::where('user_id', $user_id)->with('product')->orderBy('created_at', 'desc')->get();
+        
+        return view('pages.admin.upload', compact('products', 'historis'));
     }
     public function store(Request $request)
     {
