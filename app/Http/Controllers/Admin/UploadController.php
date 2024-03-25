@@ -65,7 +65,7 @@ class UploadController extends Controller
         ]);
 
         // Jika data berhasil disimpan, redirect ke halaman lain atau kembalikan respons sukses
-        return redirect()->view('pages.admin.upload')->with('success', 'Product created successfully.');
+        return redirect()->back()->with('success', 'Product created successfully.');
     }
 
     public function createupdate($id)

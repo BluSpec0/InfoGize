@@ -204,48 +204,4 @@
         </div>
     </section>
 
-    <section id="hubungikami">
-        <div class="container" style="padding-top: 5rem">
-            <div class="card" style="border-color: #5F5B00; border-width: 0.5%; box-shadow: 0px 0px 15px #5f5a0040;">
-                <h5 class="card-header d-flex justify-content-center align-items-center"
-                    style="border-color: #5F5B00; border-width: 1px; background-color: #fff; color: #5F5B00; font-weight: 400; font-size: 25px; height: 4rem">
-                    Hubungi Kami
-                </h5>
-                <div class="card-body">
-                    <form id="contactForm">
-
-                        <!-- Name input -->
-                        <div class="mb-3">
-                            <label class="form-label" for="name" style="color: #5F5B00">Nama</label>
-                            <input class="form-control" id="name" type="text"
-                                style="box-shadow: 0px 0px 5px #5f5a0040;" />
-                        </div>
-
-                        <!-- Email address input -->
-                        <div class="mb-3">
-                            <label class="form-label" for="emailAddress" style="color: #5F5B00">Email</label>
-                            <input class="form-control" id="emailAddress" type="email"
-                                style="box-shadow: 0px 0px 5px #5f5a0040;" />
-                        </div>
-
-                        <!-- Message input -->
-                        <div class="mb-3">
-                            <label class="form-label" for="message" style="color: #5F5B00">Pesan</label>
-                            <textarea class="form-control" id="message" type="text"
-                                style="height: 10rem; box-shadow: 0px 0px 5px #5f5a0040;"></textarea>
-                        </div>
-
-                        <!-- Form submit button -->
-                        <div class="d-flex justify-content-end">
-                            <div>
-                                <button class="btn btn-primary btn-md" type="submit"
-                                    style="color: #fff; background-color: #5F5B00; border-color: #5F5B00">Kirim</button>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection

@@ -66,11 +66,6 @@
                                         <a class="nav-link active" aria-current="page" href="/#FAQ"
                                             style="color: #5F5B00">FAQ</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="/#hubungikami"
-                                            style="color: #5F5B00">Hubungi
-                                            Kami</a>
-                                    </li>
                                 @endif
                             @else
                                 @if (Auth::user()->usertype == 'admin')
