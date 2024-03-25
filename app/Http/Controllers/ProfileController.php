@@ -61,7 +61,7 @@ class ProfileController extends Controller
     	
     	$user->update();
 
-    	return redirect('profile');
+    	return back();
     }
 
 	public function destroy(Request $request): RedirectResponse

@@ -51,10 +51,9 @@
                                                     {{ number_format($item->product->harga * $item->jumlah, 0, ',', '.') }}
                                             </div>
                                             </p>
-                                            <a href="{{ url('information-detail') }}/{{ $item->id }}"
-                                                class="btn btn-primary "
-                                                style="color: #fff; background-color: #5F5B00; border-color: #5F5B00">
-                                                Beli</a>
+                                            <a href="{{ route('detailcart', ['id' => $item->id]) }}"
+                                                class="btn btn-primary"
+                                                style="color: #fff; background-color: #5F5B00; border-color: #5F5B00;">Beli</a>
                                         </div>
                                     </div>
                                 </div>

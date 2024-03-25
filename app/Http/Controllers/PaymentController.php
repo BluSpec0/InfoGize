@@ -12,9 +12,9 @@ use Auth;
 class PaymentController extends Controller
 {
     public function index($id) {
-        $user_id = Auth::id();
-        $historis = History::where('user_id', $user_id)->with('product')->get();
+    $historis = History::where('id', $id)->first();
 
-        return view('pages.payment', compact('historis'));
-    }
+    return view('pages.payment', compact('historis'));
+}
+
 }

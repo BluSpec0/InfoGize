@@ -6,6 +6,7 @@ use App\Http\Controllers\CloudinaryStorage;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 
 class UploadController extends Controller
 {
@@ -17,7 +18,7 @@ class UploadController extends Controller
      */
     public function create()
     {
-        $products = Product::get();
+        $products = Product::orderBy('created_at', 'desc')->get();
         return view('pages.admin.upload', compact('products'));
     }
     public function store(Request $request)
@@ -60,47 +61,77 @@ class UploadController extends Controller
         return redirect()->view('pages.admin.upload')->with('success', 'Product created successfully.');
     }
 
+    public function createupdate($id)
+    {
+        $product = Product::where('id', $id)->first();
+        return view('pages.admin.editproduct', compact('product'));
+    }
+
     public function update(Request $request, $id)
     {
-        // Temukan produk berdasarkan ID
-        $product = Product::findOrFail($id);
+        $products = Product::find($id);
 
-        // Validasi input dari request
         $request->validate([
-            'product_name' => 'required|string',
-            'harga' => 'required|numeric',
-            'stok' => 'required|integer',
-            'product_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Ubah validasi untuk gambar agar bersifat opsional
-            // Tambahkan validasi untuk atribut lainnya
+            'product_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        $product = Product::where('id', $id)->first();
 
         $image = $request->file('product_image');
-        $image_url = $image ? CloudinaryStorage::replaceProduct($product->image_url, $image->getRealPath(), $image->getClientOriginalName()) : $product->image_url;
+        $image_url = $image ? CloudinaryStorage::replaceProduct($products->image_url, $image->getRealPath(), $image->getClientOriginalName()) : $products->image_url;
 
-        // Update data produk ke dalam database
-        $product->update([
-            'product_name' => $request->product_name ?? $product->product_name,
-            'harga' => $request->harga ?? $product->harga,
-            'stok' => $request->stok ?? $product->stok,
-            'nama' => $request->nama ?? $product->nama,
-            'kodepart' => $request->kodepart ?? $product->kodepart,
-            'kategori' => $request->kategori ?? $product->kategori,
-            'lokasiparts' => $request->lokasiparts ?? $product->lokasiparts,
-            'keterangan' => $request->keterangan ?? $product->keterangan,
-            'rincian1' => $request->rincian1 ?? $product->rincian1,
-            'rincian2' => $request->rincian2 ?? $product->rincian2,
-            'rincian3' => $request->rincian3 ?? $product->rincian3,
-            'rincian4' => $request->rincian4 ?? $product->rincian4,
-            'rincian5' => $request->rincian5 ?? $product->rincian5,
-            'rincian6' => $request->rincian6 ?? $product->rincian6,
-            'rincian7' => $request->rincian7 ?? $product->rincian7,
-            'rincian8' => $request->rincian8 ?? $product->rincian8,
-            'product_image' => $image_url ?? $product->image_url,
-        ]);
+        if (!empty($request->product_name)) {
+        $products->product_name = $request->product_name;
+   		}
+		if (!empty($request->nama)) {
+        $products->nama = $request->nama;
+   		}
+		if (!empty($request->kodepart)) {
+        $products->kodepart = $request->kodepart;
+   		}
+		if (!empty($request->harga)) {
+    	$products->harga = $request->harga;
+   		}
+	 	if (!empty($request->stok)) {
+     	$products->stok = $request->stok;
+   	 	}
+		if (!empty($request->kategori)) {
+     	$products->kategori = $request->kategori;
+   	 	}
+        if (!empty($request->lokasiparts)) {
+     	$products->lokasiparts = $request->lokasiparts;
+   	 	}
+        if (!empty($request->keterangan)) {
+     	$products->keterangan = $request->keterangan;
+   	 	}
+        if (!empty($request->rincian1)) {
+     	$products->rincian1 = $request->rincian1;
+   	 	}
+        if (!empty($request->rincian2)) {
+     	$products->rincian2 = $request->rincian2;
+   	 	}
+        if (!empty($request->rincian3)) {
+     	$products->rincian3 = $request->rincian3;
+   	 	}
+        if (!empty($request->rincian4)) {
+     	$products->rincian4 = $request->rincian4;
+   	 	}
+        if (!empty($request->rincian5)) {
+     	$products->rincian5 = $request->rincian5;
+   	 	}
+        if (!empty($request->rincian6)) {
+     	$products->rincian6 = $request->rincian6;
+   	 	}
+        if (!empty($request->rincian7)) {
+     	$products->rincian7 = $request->rincian7;
+   	 	}
+        if (!empty($request->rincian8)) {
+     	$products->rincian8 = $request->rincian8;
+   	 	}
+		if (!empty($request->product_image)) {
+        $products->product_image = $image_url;
+   		}
+    	
+    	$products->update();
 
-        // Redirect dengan pesan sukses
-        return redirect()->back()->with('success', 'Product updated successfully.');
+    	return redirect('create');
     }
 }   

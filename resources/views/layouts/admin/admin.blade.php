@@ -177,57 +177,9 @@
             @yield('content')
         </main>
 
-        <footer class="footer mt-auto py-5" style="background-color: #5F5B00; margin-top: auto">
-            <div class="container d-flex justify-content-center" style="opacity: 0.75">
-                <div class="row row-cols-1">
-                    <div class="d-flex justify-content-center" style="margin-bottom: 2.5rem">
-                        <img src="{{ url('/images/footerlogo.png') }}" alt="" width="180">
-                    </div>
-
-                    <div class="d-flex flex-row justify-content-center"
-                        style="font-size: 17px; flex-direction: row; gap: 2rem; text-transform: uppercase; margin-bottom: 2.5rem">
-                        <a class=" " href="{{ Auth::check() ? route('home') : '/' }}"
-                            style="color: #FFFFFF">Beranda</a>
-                        <a class=" " href="{{ route('informations') }}" style="color: #FFFFFF;">Informasi</a>
-                        <a class=" " href="{{ route('products') }}" style="color: #FFFFFF;">Produk</a>
-                        <a class=" " href="{{ Auth::check() ? url('/home#FAQ') : '/#FAQ' }}"
-                            style="color: #FFFFFF;">FAQ</a>
-                        <a class=" " href="{{ Auth::check() ? url('/home#hubungikami') : '/#hubungikami' }}"
-                            style="color: #FFFFFF;">Hubungi Kami</a>
-                    </div>
-
-                    <div class="d-flex justify-content-center mb-3">
-                        <h4 style="color: #FFFFFF; font-weight: 400">Tersedia Produk</h4>
-                    </div>
-
-                    <div class="d-flex justify-content-center align-items-center gap-5" style="margin-bottom: 3rem">
-                        <img src="{{ url('/images/footer1.png') }}" alt="" height="40">
-                        <img src="{{ url('/images/footer2.png') }}" alt="" height="35">
-                        <img src="{{ url('/images/footer3.png') }}" alt="" height="35">
-                        <img src="{{ url('/images/footer4.png') }}" alt="" height="20">
-                    </div>
-
-                    <div class="d-flex justify-content-evenly gap-4">
-                        <div class="d-flex flex-row gap-1 align-items-center">
-                            <img src="{{ url('/images/instagram.svg') }}" alt="" width="20"
-                                style="vertical-align: middle;">
-                            <p style="color: #FFFFFF; margin-bottom: 0; vertical-align: middle;">InfoGize.official.id
-                            </p>
-                        </div>
-
-                        <div>
-                            <span style="color: #FFFFFF; margin-bottom: 0; vertical-align: middle;">&copy;Copyright
-                                2024
-                                InfoGize Indonesia</span>
-                        </div>
-
-                        <div>
-                            <p style="color: #FFFFFF; margin-bottom: 0; vertical-align: middle;">InfoGize@gmail.com</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <footer style="background-color: #f2f2f2; padding: 10px; margin-top: auto; width: 100%; text-align: center;">
+            <span style="color: #00000055; margin-bottom: 0; vertical-align: middle;">&copy;Copyright 2024
+                InfoGize Indonesia</span>
         </footer>
 
 </body>

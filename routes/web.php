@@ -43,13 +43,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/history', [App\Http\Controllers\HistoryController::class, 'index'])->name('history.view');
     Route::post('/history/add', [App\Http\Controllers\HistoryController::class, 'addToHistory'])->name('history.add');
     Route::get('/payment/{id}', [App\Http\Controllers\PaymentController::class, 'index'])->name('payment.view');
+    Route::get('detailcart/{id}', [App\Http\Controllers\DetailCartController::class, 'detailcart'])->name('detailcart');
 });
 
 Route::middleware(['auth','authadmin'])->group(function () {
     Route::get('/create', [App\Http\Controllers\Admin\UploadController::class, 'create'])->name('product.create');
     Route::post('/upload', [App\Http\Controllers\Admin\UploadController::class, 'store'])->name('store.product');
     Route::get('/adminpsearch', [App\Http\Controllers\SearchController::class, 'adminpsearch'])->name('adminpsearch');
-    Route::put('/adminupdate/{id}', [App\Http\Controllers\Admin\UploadController::class, 'update'])->name('adminp.update');
+    Route::get('/editproduct/{id}', [App\Http\Controllers\Admin\UploadController::class, 'createupdate'])->name('product.view');
+    Route::put('/editproduct/{id}', [App\Http\Controllers\Admin\UploadController::class, 'update'])->name('products.update');
 });
 
 Route::get('/forgot-password', function () {

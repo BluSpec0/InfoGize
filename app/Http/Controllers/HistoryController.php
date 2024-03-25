@@ -20,36 +20,38 @@ class HistoryController extends Controller
     }
 
     public function addToHistory(Request $request)
-    {
-        $product = Product::find($request->product_id);
+{
+    $product = Product::find($request->product_id);
 
-        if (!$product) {
-            return redirect()->back()->with('error', 'Produk tidak ditemukan.');
-        }
-
-        $cart = Cart::find($request->cart_id);
-
-        $jumlah = $request->input('jumlah', 1);
-
-        $historyItem = new History();
-        $historyItem->product_id = $product->id;
-        
-        if ($request->has('cart_id')) {
-            $historyItem->cart_id = $cart->id;
-        } else {
-            $historyItem->cart_id = null; // Atau, jika tidak ada input, set cart_id menjadi null
-        }   
-        
-        $historyItem->jumlah = $jumlah;
-        
-        // Cek apakah pengguna terautentikasi
-        if (Auth::check()) {
-            $historyItem->user_id = auth()->user()->id;
-            $historyItem->address = auth()->user()->address;
-        }
-        
-        $historyItem->save();
-
-        return redirect()->route('payment.view')->with('success', 'Pembelian berhasil.');
+    if (!$product) {
+        return redirect()->back()->with('error', 'Produk tidak ditemukan.');
     }
+
+    $cart = Cart::find($request->cart_id);
+
+    $jumlah = $request->input('jumlah', 1);
+
+    $historyItem = new History();
+    $historyItem->product_id = $product->id;
+    
+    if ($request->has('cart_id')) {
+        $historyItem->cart_id = $cart->id;
+    } else {
+        $historyItem->cart_id = null; // Alternatively, if there is no input, set cart_id to null
+    }   
+    
+    $historyItem->jumlah = $jumlah;
+    
+    // Check if the user is authenticated
+    if (Auth::check()) {
+        $historyItem->user_id = auth()->user()->id;
+        $historyItem->address = auth()->user()->address;
+    }
+    
+    $historyItem->save();
+
+    // Pass the required parameter to the payment view route
+    return redirect()->route('payment.view', ['id' => $historyItem->id])->with('success', 'Pembelian berhasil.');
+}
+
 }
