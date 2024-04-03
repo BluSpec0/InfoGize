@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/payment/{id}', [App\Http\Controllers\PaymentController::class, 'index'])->name('payment.view');
     Route::get('detailcart/{id}', [App\Http\Controllers\DetailCartController::class, 'detailcart'])->name('detailcart');
     Route::post('detailcart/{id}', [App\Http\Controllers\DetailCartController::class, 'processPayment'])->name('processPayment');
-    Route::post('/hubungi-kami/submit', 'ContactController@submitForm')->name('contact.submit');
+    Route::post('/hubungi-kami/submit', [App\Http\Controllers\ContactController::class, 'submitForm'])->name('contact.submit');
 });
 
 Route::middleware(['auth','authadmin'])->group(function () {

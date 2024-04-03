@@ -33,12 +33,6 @@
                             <button class="nav-link active" id="nav-biodata-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-biodata" type="button" role="tab" aria-controls="nav-biodata"
                                 aria-selected="true">Produk</button>
-                            <button class="nav-link" id="nav-alamat-tab" data-bs-toggle="tab" data-bs-target="#nav-alamat"
-                                type="button" role="tab" aria-controls="nav-alamat"
-                                aria-selected="false">Pembayaran</button>
-                            <button class="nav-link" id="nav-lainnya-tab" data-bs-toggle="tab" data-bs-target="#nav-lainnya"
-                                type="button" role="tab" aria-controls="nav-lainnya" aria-selected="false">Hubungi
-                                Kami</button>
                         </div>
                     </nav>
                     <div class="tab-content mb-3" id="nav-tabContent"
@@ -114,79 +108,6 @@
                                                                 href="{{ url('editproduct') }}/{{ $product->id }}"
                                                                 style="color: #FFFFFF; font-size: 13px; border-radius: 5px;">{{ __('Ubah') }}</a>
 
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="nav-alamat" role="tabpanel" aria-labelledby="nav-alamat-tab">
-                            <div style="border: 1px solid #5F5B00; border-radius: 10px; padding: 1rem" class="mb-4">
-                                <div>
-                                    <table class="table table-bordered">
-                                        <thead class="table-dark">
-                                            <tr>
-                                                <th scope="col">Nama Produk</th>
-                                                <th scope="col">Kategori</th>
-                                                <th scope="col">Harga</th>
-                                                <th scope="col">Lokasi</th>
-                                                <th scope="col">Stok</th>
-                                                <th scope="col" class="d-flex justify-content-center">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($historis as $product)
-                                                <tr>
-                                                    <td>{{ $product->product_name }}</td>
-                                                    <td>Rp. {{ number_format($product->harga, 0, ',', '.') }}</td>
-                                                    <td>
-                                                        <div class="d-flex gap-2">
-                                                            <a class="btn btn-success btn-md mb-3" type="button"
-                                                                href="{{ url('editproduct') }}/{{ $product->id }}"
-                                                                style="color: #FFFFFF; font-size: 13px; border-radius: 5px;">{{ __('Ubah') }}</a>
-                                                            <a class="btn btn-danger btn-md mb-3" type="button"
-                                                                data-bs-toggle="modal" data-bs-target="#biodata"
-                                                                style="color: #FFFFFF; font-size: 13px; border-radius: 5px;">{{ __('Hapus') }}</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="nav-lainnya" role="tabpanel" aria-labelledby="nav-lainnya-tab">
-                            <div style="border: 1px solid #5F5B00; border-radius: 10px; padding: 1rem" class="mb-4">
-                                <div>
-                                    <table class="table table-bordered">
-                                        <thead class="table-dark">
-                                            <tr>
-                                                <th scope="col">Nama Produk</th>
-                                                <th scope="col">Kategori</th>
-                                                <th scope="col">Harga</th>
-                                                <th scope="col">Lokasi</th>
-                                                <th scope="col">Stok</th>
-                                                <th scope="col" class="d-flex justify-content-center">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($historis as $product)
-                                                <tr>
-                                                    <td>{{ $product->product_name }}</td>
-                                                    <td>Rp. {{ number_format($product->harga, 0, ',', '.') }}</td>
-                                                    <td>
-                                                        <div class="d-flex gap-2">
-                                                            <a class="btn btn-success btn-md mb-3" type="button"
-                                                                href="{{ url('editproduct') }}/{{ $product->id }}"
-                                                                style="color: #FFFFFF; font-size: 13px; border-radius: 5px;">{{ __('Ubah') }}</a>
-                                                            <a class="btn btn-danger btn-md mb-3" type="button"
-                                                                data-bs-toggle="modal" data-bs-target="#biodata"
-                                                                style="color: #FFFFFF; font-size: 13px; border-radius: 5px;">{{ __('Hapus') }}</a>
                                                         </div>
                                                     </td>
                                                 </tr>

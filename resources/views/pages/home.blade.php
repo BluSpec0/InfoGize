@@ -212,27 +212,48 @@
                     Hubungi Kami
                 </h5>
                 <div class="card-body">
-                    <form id="contactForm">
+                    <form id="contactForm" action="{{ route('contact.submit') }}" method="POST">
+                        @csrf
 
-                        <!-- Name input -->
-                        <div class="mb-3">
-                            <label class="form-label" for="name" style="color: #5F5B00">Nama</label>
-                            <input class="form-control" id="name" type="text"
-                                style="box-shadow: 0px 0px 5px #5f5a0040;" />
+                        <div class="form-group mb-2">
+                            <label for="name" style="color: #5F5B00">Nama :</label><br>
+                            <input id="name" type="text"
+                                style="border-color: #5F5B00; border-width: 1px; border-radius: 5px"
+                                placeholder="Masukan Nama" class="form-control" name="name" >
+                            <style>
+                                #name::placeholder {
+                                    color: #5F5B00;
+                                    text-align: center;
+                                    opacity: 0.3;
+                                }
+                            </style>
                         </div>
 
-                        <!-- Email address input -->
-                        <div class="mb-3">
-                            <label class="form-label" for="emailAddress" style="color: #5F5B00">Email</label>
-                            <input class="form-control" id="emailAddress" type="email"
-                                style="box-shadow: 0px 0px 5px #5f5a0040;" />
+                        <div class="form-group mb-2">
+                            <label for="email" style="color: #5F5B00">Email :</label><br>
+                            <input id="email" type="text"
+                                style="border-color: #5F5B00; border-width: 1px; border-radius: 5px"
+                                placeholder="Masukan Email" class="form-control" name="email" >
+                            <style>
+                                #email::placeholder {
+                                    color: #5F5B00;
+                                    text-align: center;
+                                    opacity: 0.3;
+                                }
+                            </style>
                         </div>
 
-                        <!-- Message input -->
-                        <div class="mb-3">
-                            <label class="form-label" for="message" style="color: #5F5B00">Pesan</label>
-                            <textarea class="form-control" id="message" type="text"
-                                style="height: 10rem; box-shadow: 0px 0px 5px #5f5a0040;"></textarea>
+                        <div class="form-group mb-2">
+                            <label for="message" style="color: #5F5B00">Pesan :</label><br>
+                            <textarea id="message" type="text" style="border-color: #5F5B00; border-width: 1px; border-radius: 5px"
+                                placeholder="Masukan Pesan" class="form-control" name="message" ></textarea>
+                            <style>
+                                #message::placeholder {
+                                    color: #5F5B00;
+                                    text-align: center;
+                                    opacity: 0.3;
+                                }
+                            </style>
                         </div>
 
                         <!-- Form submit button -->
